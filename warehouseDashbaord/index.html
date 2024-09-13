@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content='IE=edge' http-equiv=X-UA-Compatible>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/images/logo1.jpeg" rel="icon">
+    <title>Milko Admin Panel</title>
+    <link rel="shortcut icon" type="image/png" href="#">
+
+    <!-- Core Css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/line-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-slider.css">
+
+    <!-- Custom Css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    
+    header {
+        background: #007bff;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+    }
+    
+    nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+    
+    nav ul li {
+        margin: 0 10px;
+    }
+    
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+    }
+    
+    main {
+        padding: 20px;
+    }
+    
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 75px;
+        margin-left: 135px;
+    }
+    
+    .box {
+        background-color: white;
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        width: calc(33.33% - 20px);
+    }
+    
+    .box h3 {
+        margin-top: 0;
+        text-align: center;
+    }
+    
+    canvas {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    
+    th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: #f2f2f2;
+    }
+   /* Dropdown Styles */
+.dropdown-parent {
+    position: relative;
+}
+
+.dropbtn {
+    display: block;
+    cursor: pointer; /* Ensure cursor changes to pointer on clickable items */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    right: 0;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown-parent.active .dropdown-content {
+    display: block;
+}
+    /* Toggle for Sidebar */
+@media (max-width: 768px) {
+    .br-sideleft {
+        transform: translateX(-100%);
+    }
+
+    .br-sideleft.active {
+        transform: translateX(0);
+    }
+
+    .overlay-background.active {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+}
+@media screen and (max-width: 600px){
+ .container{
+    display: flex;
+    flex-direction: column;
+ }
+ .box{
+    width: 100%;
+ }
+ 
+}
+
+@media screen and (max-width: 1200px) {
+    .br-sideleft {
+        /* -moz-transform: translate(-200px, 0);
+        -o-transform: translate(-200px, 0);
+        -ms-transform: translate(-200px, 0); */
+        -webkit-transform: translate(0px, 0);
+        transform: translate(0px, 0);
+    }
+}
+/* General table styling */
+/* General table styling */
+.farmers-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: 11%;
+}
+
+.farmers-table th, .farmers-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.farmers-table th {
+    background-color: #f4f4f4;
+}
+
+/* Image styling */
+.product-image {
+    width: 50px;
+    height: auto;
+}
+
+/* Empty message styling */
+.empty-message {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.empty-icon {
+    width: 50px;
+    height: auto;
+}
+
+/* Button styling */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button.remove-farmer {
+    background-color: #f44336; /* Red for remove button */
+}
+
+button.place-order {
+    background-color: #008CBA; /* Blue for place order button */
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .farmers-table {
+        border: 0;
+    }
+    
+    .farmers-table thead {
+        display: none;
+    }
+    
+    .farmers-table, .farmers-table tbody, .farmers-table tr, .farmers-table td {
+        display: block;
+        width: 100%;
+    }
+    
+    .farmers-table td {
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+        box-sizing: border-box;
+        border: none;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .farmers-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 10px;
+        font-weight: bold;
+        text-align: left;
+    }
+    
+    .farmers-table td:last-child {
+        border-bottom: 0;
+    }
+
+    .category-select {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+}
+
+/* Dropdown styling for better view on smaller screens */
+.filter-container {
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+/* General styling for filter container and category select dropdown */
+.filter-container {
+    margin: 20px 0; /* Add margin to space out from other elements */
+    padding: 0 10px; /* Add padding to give some space on the sides */
+    text-align: center; /* Center-align the dropdown */
+}
+
+.category-select {
+    width: 50%; /* Full width for mobile screens */
+    padding: 12px; /* Increase padding for better touch interaction */
+    font-size: 16px; /* Larger font size for readability */
+    background-color: #fff; /* White background for better contrast */
+    border: 1px solid #ddd; /* Light border for definition */
+    border-radius: 4px; /* Rounded corners for modern look */
+    appearance: none; /* Remove default styling */
+    -webkit-appearance: none; /* Remove default styling in WebKit browsers */
+    text-align: center;
+    -moz-appearance: none; /* Remove default styling in Firefox */
+}
+
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .filter-container {
+        padding: 0 10px; /* Add some padding for mobile devices */
+    }
+
+    .category-select {
+        font-size: 16px; /* Ensure font size is readable on mobile */
+        padding: 12px; /* Ensure padding is sufficient for touch interactions */
+    }
+}
+
+
+</style>    
+</head>
+
+<body>
+    <div class="overlay-background"></div>
+    <!-- ########## START: Setting Box ########## -->
+    <div class="theme-setting-wrapper">
+        <!-- <button type="button" id="settings-trigger" class="btn btn-primary waves-effect waves-primary">
+			<i class="la la-cog"></i>
+		</button> -->
+        <div class="theme-setting-sidebar">
+            <div class="h-100">
+                <div class="mt-4 d-flex align-items-center flex-wrap px-4">
+                    <h4 class="font-weight-bold">THEME CUSTOMIZER</h4>
+                    <small>Customize &amp; Preview in Real Time</small>
+                </div>
+                <hr>
+                <div class="theme-setting-sidebar-scroll">
+                    <div class="px-4">
+                        <div>
+                            <h5 class="mb-2">Dark Mode</h5>
+                            <div class="d-flex align-items-center">
+                                <div class="radio theme-radio mr-4">
+                                    <input type="radio" id="light" name="light" value="theme-light">
+                                    <label for="light">Light</label>
+                                </div>
+                                <div class="radio theme-radio mr-4">
+                                    <input type="radio" id="dark" name="light" value="theme-dark">
+                                    <label for="dark">Dark</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ########## END: Setting Box ########## -->
+
+    <!-- ########## START: LEFT PANEL ########## -->
+    <div class="br-sideleft">
+        <a id="remove-menu" class="la la-close d-xl-none"></a>
+        <div class="br-logo d-flex justify-content-center align-items-center">
+            <a href="index.html"><img src="assets/image/logo1.jpeg" alt="Milko Dashboard Panel" width="80" /></a>
+        </div>
+        <ul class="custom-scroll ">
+            <li class="active"><a href="index.html" class="waves-effect waves-primary"><i
+                        class="la la-dashboard"></i>Dashboard</a></li>
+            <li><a href="ManageProduct.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Farmer-Board</a></li>
+          
+            <!-- <li><a href="ManageCategory.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Manage Category</a></li> -->
+            <!-- <li><a href="javascript:;" class="waves-effect waves-primary"><i
+                        class="la la-bullhorn"></i>Campaign</a></li> -->
+            <!-- <li class="dropdown-sub-menu">
+                <a href="Customers.html" class="waves-effect waves-primary"><i
+                            class="la la-users"></i>Customers</a> -->
+                <!-- <ul class="sub-menu">
+                        <li><a href="javascript:;"><i class="la la-users"></i>New Customers</a></li>
+                        <li><a href="javascript:;"><i class="la la-users"></i>Old Customers</a></li>
+                    </ul> -->
+            </li>
+            <!-- <li><a href="Orders.html" class="waves-effect waves-primary"><i
+                            class="la la-cart-arrow-down"></i>Orders</a></li> -->
+
+
+            <li><a href="Orders.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Shop-Board</a></li>
+                            
+                            
+                            
+            <li><a href="Messages.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Stock-Board</a></li>
+            <li><a href="Payment.html" class="waves-effect waves-primary"><i class="la la-bank"></i>Payments</a>
+                <li><a href="Payment.html" class="waves-effect waves-primary"><i class="la la-bank"></i>Payment-History</a>
+            </li>
+            
+                <!-- <li class="dropdown"><a href="Manageshop.html" class=" dropbtn"></i>Farmer Section</a>
+                    
+                </li> -->
+                <!-- <li class="dropdown-parent">
+                    <a href="#" class="waves-effect waves-primary dropbtn" onclick="toggleDropdown(event, 'ordersDropdown')">
+                        <i class="la la-image"></i> Farmer Section
+                    </a>
+                    <div id="ordersDropdown" class="dropdown-content">
+                        <a href="Farmer_Order.html" class="waves-effect waves-primary">Order Form</a>
+                        <a href="Farmer_HistoryOrder.html" class="waves-effect waves-primary">History Orders</a>
+                        <a href="Farmer_FarmerDetail.html" class="waves-effect waves-primary">Farmer Details</a>
+                        <a href="Farmer_PaymentHistory.html" class="waves-effect waves-primary">Payment History</a>
+                        <a href="Farmer_PaymentGateway.html" class="waves-effect waves-primary">Cart</a>
+                        <a href="Farmer_Wallet.html" class="waves-effect waves-primary">Wallet</a>
+                    </div>
+                </li> -->
+                <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Notice Add</a>
+                <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Wallet</a>
+                    <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Billing</a>
+            <li><a href="Setting.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Settings</a>
+            <li><a href="../index.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Logout</a>
+            </li>
+        </ul>
+    </div>
+    <!-- ########## END: LEFT PANEL ########## -->
+
+    <header class="header fixed-top d-flex align-items-center">
+        <!-- ########## START: HEAD PANEL ########## -->
+        <div class="br-header d-flex w-100">
+            <a id="add-menu" class="la la-navicon d-flex d-xl-none align-items-center justify-content-center"></a>
+            <div class="br-header-left">
+                <a href="javascript:;" class="searchbar-toggle la la-search d-flex d-md-none"></a>
+                <form class="searchbar d-flex align-items-center pl-3">
+                    <i class="la la-search"></i>
+                    <input class="form-control border-0 pl-2" type="search" placeholder="Search...">
+                </form>
+            </div>
+            <!-- br-header-left -->
+            <div class="br-header-right ml-auto">
+                <nav class="nav">
+                    <div class="dropdown">
+                        <a href="" class="nav-link position-relative dropdown-toggle waves-effect waves-primary" id="dropdownMSG" data-toggle="dropdown">
+                            <i class="la la-envelope-o"></i>
+                            <span class="badge badge-accent">2</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-header py-0" aria-labelledby="dropdownMSG">
+                            <div class="dropdown-menu-label">
+                                <label class="mb-0">Messages</label>
+                                <button type="button" class="btn btn-primary btn-sm waves-effect waves-primary">View
+									all</button>
+                            </div>
+                            <!-- d-flex -->
+                            <div class="dropdown-divider my-0"></div>
+                            <div class="media-list">
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <strong>Sham patil</strong>
+                                                <span>2 minutes ago</span>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <strong>Sita Ram</strong>
+                                                <span>2 minutes ago</span>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <strong>Shima patil</strong>
+                                                <span>2 minutes ago</span>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                            </div>
+                            <!-- media-list -->
+                        </div>
+                        <!-- dropdown-menu -->
+                    </div>
+                    <!-- dropdown -->
+                    <div class="dropdown">
+                        <a href="" class="nav-link position-relative dropdown-toggle waves-effect waves-primary" id="dropdownNOTY" data-toggle="dropdown">
+                            <i class="la la-bell"></i>
+                            <span class="badge badge-accent ">1</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-header py-0" aria-labelledby="dropdownNOTY">
+                            <div class="dropdown-menu-label">
+                                <label class="mb-0">NOTIFICATIONS </label>
+                                <button type="button" class="btn btn-primary btn-sm waves-effect waves-light">View
+									all</button>
+                            </div>
+                            <!-- d-flex -->
+                            <div class="dropdown-divider my-0"></div>
+                            <div class="media-list">
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                                <strong>Sham Patil</strong>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">A wonderful serenity has taken possession of </p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                                <strong>Ram Modi</strong>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">A wonderful serenity has taken possession of my entire.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                                <strong>Samir Patel</strong>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">A wonderful serenity has taken possession.</p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                            </div>
+                            <!-- media-list -->
+                        </div>
+                        <!-- dropdown-menu -->
+                    </div>
+                    <!-- dropdown -->
+                    <div class="dropdown">
+                        <a href="" class="nav-link-profile d-flex dropdown-toggle" data-toggle="dropdown" id="dropdownprofile">
+                            <img src="assets/image/logo1.jpeg" class="rounded" alt="" width="50">
+                            <span class="logged-name px-3">Milko <br><small class="pt-3">Founder</small></span>
+                            <i class="profile-dropdown la la-caret-square-o-down"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-header dropdown-menu-user" aria-labelledby="dropdownprofile">
+                            <div class="text-center">
+                                <a href=""><img src="assets/image/logo1.jpeg" width="80" class="rounded-circle" alt=""></a>
+                                <h6 class="logged-fullname font-weight-bold mt-2">Rathod Sir</h6>
+                                <p class="my-0">milko@domain.com</p>
+                            </div>
+                            <hr>
+                            <ul class="list-unstyled user-profile-nav">
+                                <li><a href="javascript:;" class=" waves-effect waves-light"><i class="la la-user"></i>
+										Edit Profile</a></li>
+                                <li><a href="javascript:;" class=" waves-effect waves-light"><i class="la la-cog"></i>
+										Settings</a></li>
+                                <li><a href="javascript:;" class=" waves-effect waves-light"><i
+											class="la la-download"></i> Downloads</a></li>
+                                <li><a href="javascript:;" class=" waves-effect waves-light"><i
+											class="la la-star-o"></i> Favorites</a></li>
+                                <li><a href="javascript:;" class=" waves-effect waves-light"><i class="la la-file"></i>
+										Collections</a></li>
+                                <li><a href="javascript:;" class=" waves-effect waves-light"><i
+											class="la la-power-off"></i> Sign Out</a></li>
+                            </ul>
+                        </div>
+                        <!-- dropdown-menu -->
+                    </div>
+                    <!-- dropdown -->
+                </nav>
+            </div>
+            <!-- br-header-right -->
+        </div>
+        <!-- br-header -->
+        <!-- ########## END: HEAD PANEL ########## -->
+    </header>
+    <main>
+        <!-- <h2>Dashboard Overview</h2> -->
+        <div class="container">
+            <div class="box">
+                <h3>Total Customers</h3>
+                <h2 id="totalCustomers">500</h2>
+            </div>
+            <div class="box">
+                <h3>Total Orders</h3>
+                <h2 id="totalOrders">600</h2>
+            </div>
+            <div class="box">
+                <h3>Total Revenue</h3>
+                <h2 id="totalRevenue">₹0</h2>
+            </div>
+            <div class="box">
+                <h3>Customer Acquisition</h3>
+                <canvas id="customerAcquisitionChart"></canvas>
+            </div>
+            <div class="box">
+                <h3>Order Status</h3>
+                <canvas id="orderStatusChart"></canvas>
+            </div>
+            <div class="box order-count">
+                <h3> Customers Orders</h3>
+                
+                    <p style="text-align: center;">Number of Orders: <span id="orderCount">0</span></p>
+                    
+                    <button type="button" class="btn btn-primary" onclick="redirectToOrders()" style="    margin-left: 110px;
+    margin-top: 20px;">Go to Orders</button>
+                
+            </div>
+            <!-- <div class="box">
+                <h3> Farmer Products</h3>
+                <h2 id="shopCount">89</h2>
+            </div> -->
+            <div id="productList" class="product-list box">
+                <h3> Farmer Products</h3>
+                <h2 id="shopCount">89</h2>
+                <!-- Product items will be populated here -->
+                <button type="button" class="btn btn-primary" onclick="redirectToOrders()">Go to Orders</button>
+            </div>
+            <!-- <div class="box">
+                <h3>Shop Details</h3>
+                <table id="shopTable">
+                    <thead>
+                        <tr>
+                            <th>Fresh Farms</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dummy data for shop details 
+                        <tr>
+                            <td>Green Grocers</td>
+                            <td>123 Main Street</td>
+                            <td>123-456-7890</td>
+                        </tr>
+                        <tr>
+                            <th>Fresh Farms</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dummy data for shop details 
+                        <tr>
+                            <td>Green Grocers</td>
+                            <td>123 Main Street</td>
+                            <td>123-456-7890</td>
+                        </tr>
+                        <tr>
+                            <th>Fresh Farms</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dummy data for shop details 
+                        <tr>
+                            <td>Green Grocers</td>
+                            <td>123 Main Street</td>
+                            <td>123-456-7890</td>
+                        </tr>
+                        <tr>
+                            <th>Fresh Farms</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dummy data for shop details 
+                        <tr>
+                            <td>Green Grocers</td>
+                            <td>123 Main Street</td>
+                            <td>123-456-7890</td>
+                        </tr>
+                        <!-- Repeat similar rows for more shops 
+                    </tbody>
+                </table> -->
+            </div>
+        </div>
+        <div class="farmers-container">
+            <div class="filter-container">
+                <select id="farmer-category-select" class="category-select">
+                    <option value="all" class="category-option">All Categories</option>
+                    <option value="vegetables" class="category-option">Vegetables</option>
+                    <option value="fruits" class="category-option">Fruits</option>
+                    <option value="dairy" class="category-option">Dairy Products</option>
+                    <option value="daily-products" class="category-option">Daily Products</option>
+                </select>
+            </div>
+            <table class="farmers-table">
+                <thead>
+                    <tr>
+                        <th>Farmer Name</th>
+                        <th>Product Name</th>
+                        <th>Product Image</th>
+                        <th>Availability (kg)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="farmers-items">
+                    <!-- Farmer details will be injected here by JavaScript -->
+                </tbody>
+            </table>
+            <div id="farmers-empty-message" class="empty-message">
+                <img src="../images/Fruits-img/Banana.jpg" alt="Empty" class="empty-icon">
+                <p>No farmers available.</p>
+            </div>
+        </div>
+        
+    </main>
+    <script>
+
+const products = [
+    { name: "Tomato", category: "Vegetables", price: 2.5 },
+    { name: "Apple", category: "Fruits", price: 1.2 },
+    { name: "Banana", category: "Fruits", price: 0.5 },
+    // Add more product objects as needed
+];
+
+function displayProducts() {
+    const productList = document.getElementById('productList');
+    productList.innerHTML = ''; // Clear previous content
+    
+    products.forEach(product => {
+        const productItem = document.createElement('div');
+        productItem.classList.add('product-item');
+        productItem.innerHTML = `
+            <div class="product-info">
+                <h4>${product.name}</h4>
+                <p>Category: ${product.category}</p>
+                <p>Price: $${product.price.toFixed(2)}</p>
+            </div>
+            <div class="product-actions">
+                <button onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+            </div>
+        `;
+        productList.appendChild(productItem);
+    });
+}
+
+function addToCart(name, price) {
+    // You can implement cart functionality here
+    console.log(`Added ${name} to cart for $${price.toFixed(2)}`);
+}
+
+// Call the function to display products when the page loads
+window.onload = displayProducts;
+
+        // Dummy data for charts
+        const customerAcquisitionData = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'New Customers',
+                data: [50, 60, 70, 80, 90, 100],
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        const orderStatusData = {
+            labels: ['Pending', 'Processing', 'Completed'],
+            datasets: [{
+                label: 'Orders',
+                data: [20, 30, 50],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // Total counts
+        document.getElementById('totalCustomers').textContent = 100;
+        document.getElementById('totalOrders').textContent = 200;
+        document.getElementById('totalRevenue').textContent = '₹5000';
+        document.getElementById('shopCount').textContent = 10;
+
+        // Customer Acquisition Chart
+        const customerAcquisitionCtx = document.getElementById('customerAcquisitionChart').getContext('2d');
+        const customerAcquisitionChart = new Chart(customerAcquisitionCtx, {
+            type: 'line',
+            data: customerAcquisitionData,
+        });
+
+        // Order Status Chart
+        const orderStatusCtx = document.getElementById('orderStatusChart').getContext('2d');
+        const orderStatusChart = new Chart(orderStatusCtx, {
+            type: 'bar',
+            data: orderStatusData,
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+    <!-- ########## START: MAIN PANEL ########## -->
+   
+            <!-- End Other Elements -->
+            <!----======= End UI Elememnts =======---->
+     
+    <!-- ########## END: MAIN PANEL ########## -->
+
+</body>
+<script>
+    function toggleDropdown(event, dropdownId) {
+    event.preventDefault();
+    document.getElementById(dropdownId).classList.toggle("show");
+}
+
+// JavaScript for toggling dropdown
+function toggleDropdown(event, dropdownId) {
+    event.preventDefault();
+    var dropdown = document.getElementById(dropdownId);
+    var dropdownParent = event.target.closest('.dropdown-parent');
+    
+    if (dropdownParent.classList.contains('active')) {
+        dropdownParent.classList.remove('active');
+    } else {
+        // Close any other open dropdowns
+        var activeDropdown = document.querySelector('.dropdown-parent.active');
+        if (activeDropdown) {
+            activeDropdown.classList.remove('active');
+        }
+        // Open clicked dropdown
+        dropdownParent.classList.add('active');
+    }
+}
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(event) {
+    var dropdowns = document.querySelectorAll('.dropdown-parent');
+    dropdowns.forEach(function(dropdown) {
+        if (!dropdown.contains(event.target)) {
+            dropdown.classList.remove('active');
+        }
+    });
+});
+
+
+
+function redirectToOrders() {
+            window.location.href = "Orders.html";
+        }
+</script>
+<script>
+    const farmersDetails = [
+        { id: 1, name: 'John Doe', productName: 'Fresh Spinach', productCategory: 'vegetables', productImage: 'path-to-image/spinach.jpg', availability: '500' },
+        { id: 2, name: 'Jane Smith', productName: 'Organic Carrots', productCategory: 'vegetables', productImage: 'path-to-image/carrots.jpg', availability: '1kg' },
+        { id: 3, name: 'Emily Johnson', productName: 'Red Apples', productCategory: 'fruits', productImage: 'path-to-image/apples.jpg', availability: '2kg' },
+        { id: 4, name: 'Michael Brown', productName: 'Cheddar Cheese', productCategory: 'dairy', productImage: 'path-to-image/cheese.jpg', availability: '200g' },
+        { id: 5, name: 'Linda Davis', productName: 'Whole Wheat Bread', productCategory: 'daily-products', productImage: 'path-to-image/bread.jpg', availability: '1 Loaf' }
+        // Add more farmers details here
+    ];
+    
+    const farmersItemsTable = document.getElementById('farmers-items');
+    const farmersEmptyMessage = document.getElementById('farmers-empty-message');
+    const categorySelect = document.getElementById('farmer-category-select');
+    
+    function renderFarmersDetails(category) {
+        farmersItemsTable.innerHTML = '';
+        const filteredFarmers = category === 'all' ? farmersDetails : farmersDetails.filter(farmer => farmer.productCategory === category);
+    
+        if (filteredFarmers.length === 0) {
+            farmersEmptyMessage.style.display = 'block';
+        } else {
+            farmersEmptyMessage.style.display = 'none';
+            filteredFarmers.forEach(farmer => {
+                const row = document.createElement('tr');
+                row.setAttribute('data-id', farmer.id);
+    
+                row.innerHTML = `
+                    <td>${farmer.name}</td>
+                    <td>${farmer.productName}</td>
+                    <td><img src="${farmer.productImage}" alt="${farmer.productName}" class="product-image"></td>
+                    <td>${farmer.availability}</td>
+                    <td>
+                        <button class="remove-farmer">REMOVE</button>
+                        <button class="place-order">PLACE ORDER</button>
+                    </td>
+                `;
+                farmersItemsTable.appendChild(row);
+            });
+    
+            attachFarmersEventListeners();
+        }
+    }
+    
+    function attachFarmersEventListeners() {
+        const removeFarmerButtons = document.querySelectorAll('.remove-farmer');
+        const placeOrderButtons = document.querySelectorAll('.place-order');
+    
+        removeFarmerButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const row = e.target.closest('tr');
+                const farmerId = row.getAttribute('data-id');
+    
+                // Remove farmer from farmersDetails
+                const farmerIndex = farmersDetails.findIndex(farmer => farmer.id == farmerId);
+                if (farmerIndex !== -1) {
+                    farmersDetails.splice(farmerIndex, 1);
+                }
+    
+                // Re-render farmers details
+                renderFarmersDetails(categorySelect.value);
+            });
+        });
+    
+        placeOrderButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Redirect to the checkout page or perform another action
+                window.location.href = 'checkout.html';
+            });
+        });
+    }
+    
+    // Handle category selection change
+    categorySelect.addEventListener('change', (e) => {
+        renderFarmersDetails(e.target.value);
+    });
+    
+    // Initial render
+    renderFarmersDetails('all');
+    </script>
+    
+<script src="assets/scripts/jquery.min.js"></script>
+<script src="assets/scripts/popper.min.js"></script>
+<script src="assets/scripts/bootstrap-slider.min.js"></script>
+<script src="assets/scripts/bootstrap.min.js"></script>
+<script src="assets/scripts/bootstrap.bundle.min.js"></script>
+<script src="assets/scripts/bootstrap-select.min.js"></script>
+<script src="assets/scripts/bootstrap-tooltip-custom-class.js"></script>
+<script src="assets/scripts/jquery.mCustomScrollbar.js"></script>
+<script src="assets/scripts/Chart.min.js"></script>
+<script src="assets/scripts/dashboard.js"></script>
+<script src="assets/scripts/datatables.min.js"></script>
+<script src="assets/scripts/ripple.min.js"></script>
+<script src="assets/scripts/custome.js"></script>
+
+</html>

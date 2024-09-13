@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/images/logo1.jpeg" rel="icon">
+    <title>Shop Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+        .form-container {
+            display: block;
+            width: 100%;
+            max-width: 1200px;
+            background-color: white;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .input-field {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .submit-btn:hover {
+            background-color: darkred;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            text-align: left;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        @media only screen and (max-width: 756px) {
+            .form-container {
+                padding: 10px;
+            }
+        }
+        @media only screen and (min-width: 757px) and (max-width: 1190px) {
+            .form-container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      
+        <div id="shopFormContainer" class="form-container">
+            <h1>Shop Registration</h1>
+            <form id="shopForm" onsubmit="handleSubmit(event, 'shops')">
+                <label for="shopName">Shop Name</label>
+                <input type="text" id="shopName" name="name" class="input-field" placeholder="Enter shop name" required>
+
+                <label for="shopAddress">Address</label>
+                <input type="text" id="shopAddress" name="address" class="input-field" placeholder="Enter address" required>
+
+                <label for="shopPhone">Phone Number</label>
+                <input type="tel" id="shopPhone" name="phone" class="input-field" placeholder="Enter phone number" required>
+
+                <label for="shopPhoto">Shop Photo</label>
+                <input type="file" id="shopPhoto" name="shopPhoto" class="input-field">
+
+                <label for="shopAadhar">Aadhar Card</label>
+                <input type="file" id="shopAadhar" name="aadharCard" class="input-field">
+
+                <label for="shopPan">PAN Card</label>
+                <input type="file" id="shopPan" name="panCard" class="input-field">
+
+                <label for="shopIdVerification">ID Verification</label>
+                <input type="file" id="shopIdVerification" name="idVerification" class="input-field">
+
+                <label for="shopPhoneVerification">Phone Number Verification</label>
+                <input type="file" id="shopPhoneVerification" name="phoneVerification" class="input-field">
+
+                <label for="shopUsername">Username</label>
+                <input type="text" id="shopUsername" name="username" class="input-field" placeholder="Enter username" required>
+
+                <label for="shopPassword">Password</label>
+                <input type="password" id="shopPassword" name="password" class="input-field" placeholder="Enter password" required title="Password must be at least 6 characters long">
+
+                <button type="submit" class="submit-btn">Register</button>
+            </form>
+            already have account? <button class="button" onclick="location.href='login.html'">login</button>
+        </div>
+    </div>
+    <script>
+        const API_URL = 'http://localhost:3000/api'; // Adjust this according to your backend setup
+
+        function handleSubmit(event, type) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            fetch(`${API_URL}/${type}`, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Successfully registered!');
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000); // Redirect after 2 seconds
+
+                    form.reset(); // Reset the form after successful registration
+                } else {
+                    alert('Registration failed: ' + data.message);
+                }
+            })
+            .catch(error => {
+                alert('An error occurred: ' + error.message);
+            });
+        }
+    </script>
+</body>
+</html>

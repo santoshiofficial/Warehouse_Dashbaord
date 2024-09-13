@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking</title>
+    <script src="auth.js"></script>
+    <style>
+        /* Basic Reset and Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        /* Search Bar Styles */
+        #searchBar {
+            margin: 10px;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .actions button,
+        .btn-map {
+            margin-right: 5px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-process {
+            background-color: #ff9800;
+            color: white;
+        }
+
+        .btn-delivered {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .btn-successful {
+            background-color: #2196f3;
+            color: white;
+        }
+
+        .btn-map {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-map:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead tr {
+                display: none;
+            }
+
+            tr {
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                padding: 10px;
+                background-color: #fff;
+            }
+
+            td {
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50%;
+                text-align: left;
+            }
+
+            td::before {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                width: calc(50% - 20px);
+                white-space: nowrap;
+                font-weight: bold;
+            }
+
+            td:nth-of-type(1)::before { content: "Order Number"; }
+            td:nth-of-type(2)::before { content: "Product"; }
+            td:nth-of-type(3)::before { content: "Quantity"; }
+            td:nth-of-type(4)::before { content: "Price"; }
+            td:nth-of-type(5)::before { content: "Customer Name"; }
+            td:nth-of-type(6)::before { content: "Mobile Number"; }
+            td:nth-of-type(7)::before { content: "Email"; }
+            td:nth-of-type(8)::before { content: "Address"; }
+            td:nth-of-type(9)::before { content: "Payment"; }
+            td:nth-of-type(10)::before { content: "Actions"; }
+
+            .actions {
+                text-align: left;
+            }
+
+            .btn-map {
+                display: inline-block;
+                width: auto;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Orders</h1>
+    </header>
+    <div id="searchBar">
+        <input type="text" id="searchInput" onkeyup="searchOrders()" placeholder="Search for orders..">
+    </div>
+    <table id="ordersTable">
+        <thead>
+            <tr>
+                <th>Order Number</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Customer Name</th>
+                <th>Mobile Number</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Payment</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="ordersBody">
+            <!-- Data will be inserted here -->
+        </tbody>
+    </table>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    fetchOrders();
+});
+
+function fetchOrders() {
+    fetch('http://localhost:3000/api/orders')
+        .then(response => response.json())
+        .then(data => {
+            const ordersBody = document.getElementById('ordersBody');
+            ordersBody.innerHTML = '';
+            data.forEach(order => {
+                const row = `<tr>
+                    <td>${order.orderNumber}</td>
+                    <td>${order.product}</td>
+                    <td>${order.quantity}</td>
+                    <td>₹${order.price}</td>
+                    <td>${order.customerName}</td>
+                    <td>${order.mobileNumber}</td>
+                    <td>${order.email}</td>
+                    <td>
+                        ${order.address}
+                        <button class="btn-map" onclick="trackOrder('${order.address}')">Track on Map</button>
+                    </td>
+                    <td>${order.payment}</td>
+                    <td class="actions">
+                        <button class="btn-process">In process</button>
+                        <button class="btn-delivered">Delivered</button>
+                        <button class="btn-successful">Successful</button>
+                    </td>
+                </tr>`;
+                ordersBody.insertAdjacentHTML('beforeend', row);
+            });
+        })
+        .catch(error => console.error('Error fetching orders:', error));
+}
+
+function searchOrders() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById('ordersTable');
+    const tr = table.getElementsByTagName('tr');
+
+    for (let i = 1; i < tr.length; i++) {
+        const td = tr[i].getElementsByTagName('td');
+        let match = false;
+
+        for (let j = 0; j < td.length; j++) {
+            if (td[j]) {
+                if (td[j].innerText.toUpperCase().indexOf(filter) > -1) {
+                    match = true;
+                    break;
+                }
+            }
+        }
+
+        if (match) {
+            tr[i].style.display = '';
+        } else {
+            tr[i].style.display = 'none';
+        }
+    }
+}
+
+function trackOrder(address) {
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+    window.open(url, '_blank');
+}
+
+    </script>
+    
+    
+</body>
+</html>
