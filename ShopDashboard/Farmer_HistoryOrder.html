@@ -166,8 +166,8 @@
                     <td data-label="Product">Tomatoes</td>
                     <td data-label="Product Quantity">10 kg</td>
                     <td data-label="Product Image"><img src="tomato.jpg" alt="Tomatoes" class="product-image"></td>
-                    <td data-label="Product Price">₹50.00</td>
-                    <td data-label="Total Price">₹500.00</td>
+                    <td data-label="Product Price">$50.00</td>
+                    <td data-label="Total Price">$500.00</td>
                     <td data-label="Actions" class="actions">
                         <button class="btn-edit" onclick="editOrder(this)">Edit</button>
                         <button class="btn-delete" onclick="deleteOrder(this)">Delete</button>
@@ -178,8 +178,8 @@
                     <td data-label="Product">Potatoes</td>
                     <td data-label="Product Quantity">5 kg</td>
                     <td data-label="Product Image"><img src="potato.jpg" alt="Potatoes" class="product-image"></td>
-                    <td data-label="Product Price">₹40.00</td>
-                    <td data-label="Total Price">₹200.00</td>
+                    <td data-label="Product Price">$40.00</td>
+                    <td data-label="Total Price">$200.00</td>
                     <td data-label="Actions" class="actions">
                         <button class="btn-edit" onclick="editOrder(this)">Edit</button>
                         <button class="btn-delete" onclick="deleteOrder(this)">Delete</button>
@@ -197,7 +197,7 @@
             <input type="text" id="productName" placeholder="Product Name">
             <input type="text" id="productQuantity" placeholder="Product Quantity (e.g., 10 kg)">
             <input type="text" id="productImage" placeholder="Product Image URL">
-            <input type="text" id="productPrice" placeholder="Product Price (e.g., ₹50.00)">
+            <input type="text" id="productPrice" placeholder="Product Price (e.g., $50.00)">
             <button onclick="addOrder()">Submit</button>
             <button class="btn-close" onclick="closeAddOrderForm()">Close</button>
         </div>
@@ -209,7 +209,7 @@
             <input type="text" id="editProductName" placeholder="Product Name">
             <input type="text" id="editProductQuantity" placeholder="Product Quantity (e.g., 10 kg)">
             <input type="file" id="editProductImage" placeholder="Product Image here..">
-            <input type="text" id="editProductPrice" placeholder="Product Price (e.g., ₹50.00)">
+            <input type="text" id="editProductPrice" placeholder="Product Price (e.g., $50.00)">
             <button onclick="saveOrder()">Save</button>
             <button class="btn-close" onclick="closeEditOrderForm()">Close</button>
         </div>
@@ -280,8 +280,8 @@
 
         function calculateTotalPrice(quantity, price) {
             const quantityValue = parseFloat(quantity);
-            const priceValue = parseFloat(price.replace('₹', ''));
-            return `₹${(quantityValue * priceValue).toFixed(2)}`;
+            const priceValue = parseFloat(price.replace('$', ''));
+            return `$${(quantityValue * priceValue).toFixed(2)}`;
         }
 
         function editOrder(button) {

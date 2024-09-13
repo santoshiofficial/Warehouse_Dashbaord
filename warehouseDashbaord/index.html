@@ -382,7 +382,7 @@ button.place-order {
         <ul class="custom-scroll ">
             <li class="active"><a href="index.html" class="waves-effect waves-primary"><i
                         class="la la-dashboard"></i>Dashboard</a></li>
-            <li><a href="ManageProduct.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Farmer-Board</a></li>
+            <li><a href="Farmer-Board.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Farmer-Board</a></li>
           
             <!-- <li><a href="ManageCategory.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Manage Category</a></li> -->
             <!-- <li><a href="javascript:;" class="waves-effect waves-primary"><i
@@ -448,6 +448,141 @@ button.place-order {
             <!-- br-header-left -->
             <div class="br-header-right ml-auto">
                 <nav class="nav">
+                    <div class="dropdown">
+                        <a href="" class="nav-link position-relative dropdown-toggle waves-effect waves-primary" id="dropdownPaymentHistory" data-toggle="dropdown">
+                            <i class="la la-history"></i>
+                            <span class="badge badge-accent">3</span> <!-- Number of payment history entries -->
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-header py-0" aria-labelledby="dropdownPaymentHistory">
+                            <div class="dropdown-menu-label">
+                                <label class="mb-0">Payment History</label>
+                                <button type="button" class="btn btn-primary btn-sm waves-effect waves-primary">View all</button>
+                            </div>
+                            <!-- d-flex -->
+                            <div class="dropdown-divider my-0"></div>
+                            <div class="media-list">
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <i class="la la-receipt la-2x"></i> <!-- Payment history icon -->
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <strong>Invoice #12345</strong>
+                                                <span>Yesterday</span>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">Paid ₹250 via Credit Card</p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <i class="la la-receipt la-2x"></i> <!-- Payment history icon -->
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <strong>Invoice #54321</strong>
+                                                <span>2 days ago</span>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">Refunded ₹100 to PayPal</p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <i class="la la-receipt la-2x"></i> <!-- Payment history icon -->
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <strong>Invoice #67890</strong>
+                                                <span>Last week</span>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">Paid ₹500 via Bank Transfer</p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                            </div>
+                            <!-- media-list -->
+                        </div>
+                        <!-- dropdown-menu -->
+                    </div>
+                    
+
+                    <div class="dropdown">
+                        <a href="" class="nav-link position-relative dropdown-toggle waves-effect waves-primary" id="dropdownPayment" data-toggle="dropdown">
+                            <i class="la la-credit-card"></i>
+                            <span class="badge badge-accent">5</span> <!-- You can adjust the number to reflect payment notifications -->
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-header py-0" aria-labelledby="dropdownPayment">
+                            <div class="dropdown-menu-label">
+                                <label class="mb-0">Payments</label>
+                                <button type="button" class="btn btn-primary btn-sm waves-effect waves-primary">View all</button>
+                            </div>
+                            <!-- d-flex -->
+                            <div class="dropdown-divider my-0"></div>
+                            <div class="media-list">
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <i class="la la-money-check-alt la-2x"></i> <!-- Payment-related icon -->
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <strong>Payment from John Doe</strong>
+                                                <span>10 minutes ago</span>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">You received ₹250 for Invoice #12345.</p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <i class="la la-money-check-alt la-2x"></i> <!-- Payment-related icon -->
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <strong>Refund to Jane Smith</strong>
+                                                <span>1 hour ago</span>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">Refund of ₹100 for Order #54321 was processed.</p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <i class="la la-money-check-alt la-2x"></i> <!-- Payment-related icon -->
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <strong>Payment from Mike Johnson</strong>
+                                                <span>2 hours ago</span>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">You received ₹500 for Invoice #67890.</p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                            </div>
+                            <!-- media-list -->
+                        </div>
+                        <!-- dropdown-menu -->
+                    </div>
+                    
                     <div class="dropdown">
                         <a href="" class="nav-link position-relative dropdown-toggle waves-effect waves-primary" id="dropdownMSG" data-toggle="dropdown">
                             <i class="la la-envelope-o"></i>
@@ -633,7 +768,7 @@ button.place-order {
             </div>
             <div class="box">
                 <h3>Total Revenue</h3>
-                <h2 id="totalRevenue">₹0</h2>
+                <h2 id="totalRevenue">$0</h2>
             </div>
             <div class="box">
                 <h3>Customer Acquisition</h3>
@@ -826,7 +961,7 @@ window.onload = displayProducts;
         // Total counts
         document.getElementById('totalCustomers').textContent = 100;
         document.getElementById('totalOrders').textContent = 200;
-        document.getElementById('totalRevenue').textContent = '₹5000';
+        document.getElementById('totalRevenue').textContent = '$5000';
         document.getElementById('shopCount').textContent = 10;
 
         // Customer Acquisition Chart
