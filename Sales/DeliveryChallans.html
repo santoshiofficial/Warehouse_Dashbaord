@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Delivery Challans</title>
+    <!-- Bootstrap CDN for styling -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .dropdown-menu {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .content {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #fff;
+        }
+
+        .content h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .btn-create-challan {
+            margin-top: 20px;
+        }
+
+        .flowchart-section {
+            text-align: center;
+            padding: 50px 0;
+            background-color: #fff;
+            border-top: 1px solid #ccc;
+        }
+
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .flowchart div {
+            border: 1px dashed #007bff;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 200px;
+        }
+
+        .flowchart div:hover {
+            background-color: #f8f9fa;
+        }
+
+        .flowchart-case {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .flowchart-decision {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .decision {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .decision button {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .decision button.no {
+            color: #dc3545;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                All Delivery Challans
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">All</a>
+                <a class="dropdown-item" href="#">Draft</a>
+                <a class="dropdown-item" href="#">Open</a>
+                <a class="dropdown-item" href="#">Delivered</a>
+                <a class="dropdown-item" href="#">Returned</a>
+                <a class="dropdown-item" href="#">Partially Invoiced</a>
+                <a class="dropdown-item" href="#">Invoiced</a>
+                <a class="dropdown-item" href="#">New Custom View</a>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary">+ New</button>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <h2>Deliver Goods effectively!</h2>
+        <p>Create, customize and print professional Delivery Challans</p>
+        <div class="btn-create-challan">
+            <button class="btn btn-primary">Create Delivery Challan</button>
+        </div>
+    </div>
+
+    <!-- Life Cycle of a Delivery Challan Section -->
+    <div class="flowchart-section">
+        <h3>Life cycle of a Delivery Challan</h3>
+        <div class="flowchart">
+            <h4>Case 1: Relocating Goods</h4>
+            <div class="flowchart-case">
+                <div>Create Delivery Challan</div>
+                <div>Convert to Open</div>
+                <div class="decision">
+                    <p>Goods Delivered?</p>
+                    <div class="flowchart-decision">
+                        <button>Mark as Delivered</button>
+                        <button class="no">Mark as Returned</button>
+                    </div>
+                </div>
+            </div>
+
+            <h4>Case 2: Delivering Goods</h4>
+            <div class="flowchart-case">
+                <div>Create Delivery Challan</div>
+                <div>Convert to Open</div>
+                <div class="decision">
+                    <p>Goods Delivered?</p>
+                    <div class="flowchart-decision">
+                        <button>Mark as Delivered</button>
+                        <button class="no">Mark as Returned</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

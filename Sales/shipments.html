@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shipments</title>
+  <!-- Bootstrap CDN -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .header {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+    }
+    .filter-section {
+      padding: 20px;
+    }
+    .table-section {
+      padding: 0 20px;
+    }
+    .table th, .table td {
+      vertical-align: middle;
+    }
+    .no-records {
+      text-align: center;
+      padding: 50px 0;
+      color: #6c757d;
+    }
+    .filter-label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <div class="header">
+    <h3>Shipments</h3>
+    <div>
+      <a href="#" class="btn btn-link">View EasyPost Usage</a>
+      <button class="btn btn-primary">+ New</button>
+    </div>
+  </div>
+
+  <!-- Filter Section -->
+  <div class="filter-section">
+    <label class="filter-label">Filter By :</label>
+    <!-- Dropdowns for filtering status and type -->
+    <select class="form-control d-inline w-auto mr-2" id="statusFilter">
+      <option>Status : All</option>
+      <option>Pending</option>
+      <option>Shipped</option>
+      <option>Delivered</option>
+      <option>Canceled</option>
+    </select>
+    
+    <select class="form-control d-inline w-auto" id="typeFilter">
+      <option>Type : All</option>
+      <option>Domestic</option>
+      <option>International</option>
+    </select>
+  </div>
+
+  <!-- Table Section -->
+  <div class="table-section">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="col"><input type="checkbox"></th>
+          <th scope="col">DATE</th>
+          <th scope="col">SHIPMENT ORDER#</th>
+          <th scope="col">CUSTOMER NAME</th>
+          <th scope="col">SALES ORDER#</th>
+          <th scope="col">PACKAGE#</th>
+          <th scope="col">CARRIER</th>
+          <th scope="col">TRACKING#</th>
+          <th scope="col">STATUS</th>
+          <th scope="col">SHIPPING RATE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Empty state message when there are no records -->
+        <tr>
+          <td colspan="10" class="no-records">No Records Found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Optional Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Order Management</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .main-section {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .flowchart {
+            padding: 20px;
+        }
+
+        .flow-item {
+            margin: 20px;
+        }
+
+        .dotted-line {
+            border-top: 2px dashed #ccc;
+            margin: 0;
+        }
+
+        .flow-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .low-stock,
+        .receive-goods {
+            margin-left: 40px;
+            color: #007bff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section with Dropdown -->
+    <div class="header">
+        <!-- Dropdown Menu for All Sales Orders -->
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                All Sales Orders
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Order #1001 - Pending</a>
+                <a class="dropdown-item" href="#">Order #1002 - Confirmed</a>
+                <a class="dropdown-item" href="#">Order #1003 - Shipped</a>
+                <a class="dropdown-item" href="#">Order #1004 - Completed</a>
+            </div>
+        </div>
+
+        <div>
+            <button class="btn btn-info mr-2">View Order Stats</button>
+            <button class="btn btn-primary">+ New</button>
+        </div>
+    </div>
+
+    <!-- Main Section -->
+    <div class="main-section">
+        <h2>Start Managing Your Sales Activities!</h2>
+        <p>Create, customize and send professional Sales Orders.</p>
+        <button class="btn btn-primary">CREATE SALES ORDER</button>
+    </div>
+
+    <!-- Flow Diagram Section -->
+    <div class="flowchart">
+        <h4 class="text-center">Life cycle of a Sales Order</h4>
+        <div class="d-flex justify-content-center">
+            <!-- Flowchart row 1 -->
+            <div class="flow-item text-center">
+                <div class="flow-title">Customer Request</div>
+                <div><small class="text-muted">(OR)</small></div>
+                <div class="flow-title">Accepted Estimate</div>
+            </div>
+            <div class="flow-item text-center">
+                <hr class="dotted-line">
+                <div class="flow-title">Create Sales Order</div>
+            </div>
+            <div class="flow-item text-center">
+                <hr class="dotted-line">
+                <div class="flow-title">Confirm Sales Order</div>
+            </div>
+            <div class="flow-item text-center">
+                <hr class="dotted-line">
+                <div class="flow-title">Convert Sales Order to Invoice</div>
+            </div>
+            <div class="flow-item text-center">
+                <hr class="dotted-line">
+                <div class="flow-title">Get Paid</div>
+            </div>
+        </div>
+
+        <!-- Additional Conditional Flows -->
+        <div class="d-flex justify-content-center">
+            <div class="flow-item text-center">
+                <span class="low-stock">Low Stock? Convert Sales Order to Purchase Order</span>
+            </div>
+            <div class="flow-item text-center">
+                <span class="receive-goods">Receive Goods and Continue Process</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Example of Interactivity -->
+    <script>
+        // Dropdown functionality to display selected order details
+        document.querySelectorAll('.dropdown-item').forEach(function (item) {
+            item.addEventListener('click', function () {
+                alert('Viewing details for: ' + this.textContent);
+            });
+        });
+
+        // Interactive low stock or receiving goods steps
+        document.querySelector('.low-stock').addEventListener('click', function () {
+            alert('You need to place a purchase order to restock items.');
+        });
+
+        document.querySelector('.receive-goods').addEventListener('click', function () {
+            alert('Goods received, you can now proceed with order fulfillment.');
+        });
+    </script>
+
+</body>
+
+</html>

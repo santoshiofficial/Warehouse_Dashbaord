@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Returns Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .header-section {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .header-section h1 {
+            font-size: 36px;
+            color: #333;
+        }
+
+        .header-section p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .header-section button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .header-section button:hover {
+            background-color: #0056b3;
+        }
+
+        .lifecycle-section {
+            padding: 50px 20px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .lifecycle-section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .lifecycle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            padding: 10px 20px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            margin: 0 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+        }
+
+        .arrow {
+            font-size: 24px;
+            color: #007BFF;
+        }
+
+        .features-section {
+            padding: 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .features-section p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sales Return Header Section -->
+    <section class="header-section">
+        <h1>Sales Returns</h1>
+        <p>Process your product returns in few simple steps and get your inventory automatically sorted out.</p>
+        <p>Start creating sales returns from sales orders</p>
+        <button onclick="goToSalesOrders()">GO TO SALES ORDERS</button>
+    </section>
+
+    <!-- Sales Return Life Cycle Section -->
+    <section class="lifecycle-section">
+        <h2>Life cycle of a Sales Return</h2>
+        <div class="lifecycle-container">
+            <div class="step">Sales Order</div>
+            <div class="arrow">→</div>
+            <div class="step">Shipment</div>
+            <div class="arrow">→</div>
+            <div class="step">Product Returned</div>
+            <div class="arrow">→</div>
+            <div class="step">Sales Return</div>
+        </div>
+
+        <div class="lifecycle-container">
+            <div class="step">Credit Note</div>
+            <div class="arrow">→</div>
+            <div class="step">Receive</div>
+            <div class="arrow">→</div>
+            <div class="step">Sales Return</div>
+        </div>
+    </section>
+
+    <!-- Sales Return Features Section -->
+    <section class="features-section">
+        <p>In the Sales Return module, you can:</p>
+        <!-- Add list of features here -->
+    </section>
+
+    <script>
+        function goToSalesOrders() {
+            window.location.href = "#"; // Link to sales orders page
+        }
+    </script>
+
+</body>
+
+</html>
