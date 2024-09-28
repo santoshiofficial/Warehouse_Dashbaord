@@ -381,52 +381,25 @@ button.place-order {
         </div>
         <ul class="custom-scroll ">
             <li class="active"><a href="index.html" class="waves-effect waves-primary"><i
-                        class="la la-dashboard"></i>Add Product</a></li>
-            <li><a href="ManageProduct.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Manage Product</a></li>
+                        class="la la-plus-circle"></i>Add Product</a></li>
+            <li><a href="ManageProduct.html" class="waves-effect waves-primary"><i class="la la-cart-plus"></i>Manage Product</a></li>
           
-            <!-- <li><a href="ManageCategory.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Manage Category</a></li> -->
-            <!-- <li><a href="javascript:;" class="waves-effect waves-primary"><i
-                        class="la la-bullhorn"></i>Campaign</a></li> -->
-            <!-- <li class="dropdown-sub-menu">
-                <a href="Customers.html" class="waves-effect waves-primary"><i
-                            class="la la-users"></i>Customers</a> -->
-                <!-- <ul class="sub-menu">
-                        <li><a href="javascript:;"><i class="la la-users"></i>New Customers</a></li>
-                        <li><a href="javascript:;"><i class="la la-users"></i>Old Customers</a></li>
-                    </ul> -->
-            </li>
-            <!-- <li><a href="Orders.html" class="waves-effect waves-primary"><i
-                            class="la la-cart-arrow-down"></i>Orders</a></li> -->
+            
 
 
             <li><a href="Orders.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Order</a></li>
                             
                             
                             
-            <li><a href="Messages.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Orders History</a></li>
+            <li><a href="Messages.html" class="waves-effect waves-primary"><i class="la la-history"></i>Orders History</a></li>
         
             </li>
             
-                <!-- <li class="dropdown"><a href="Manageshop.html" class=" dropbtn"></i>Farmer Section</a>
-                    
-                </li> -->
-                <!-- <li class="dropdown-parent">
-                    <a href="#" class="waves-effect waves-primary dropbtn" onclick="toggleDropdown(event, 'ordersDropdown')">
-                        <i class="la la-image"></i> Farmer Section
-                    </a>
-                    <div id="ordersDropdown" class="dropdown-content">
-                        <a href="Farmer_Order.html" class="waves-effect waves-primary">Order Form</a>
-                        <a href="Farmer_HistoryOrder.html" class="waves-effect waves-primary">History Orders</a>
-                        <a href="Farmer_FarmerDetail.html" class="waves-effect waves-primary">Farmer Details</a>
-                        <a href="Farmer_PaymentHistory.html" class="waves-effect waves-primary">Payment History</a>
-                        <a href="Farmer_PaymentGateway.html" class="waves-effect waves-primary">Cart</a>
-                        <a href="Farmer_Wallet.html" class="waves-effect waves-primary">Wallet</a>
-                    </div>
-                </li> -->
+                
                 <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Notice Add</a>
-                <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Messages</a>
-                    <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Billing</a>
-            <li><a href="Setting.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Settings</a>
+                <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-weixin"></i>Messages</a>
+                    <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-file-text-o"></i>Billing</a>
+            <li><a href="Setting.html" class="waves-effect waves-primary"><i class="la la-cogs"></i>Settings</a>
             <li><a href="../index.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Logout</a>
             </li>
         </ul>
@@ -755,238 +728,27 @@ button.place-order {
         <!-- ########## END: HEAD PANEL ########## -->
     </header>
     <main>
-        <!-- <h2>Dashboard Overview</h2> -->
-        <div class="container">
-            <div class="box">
-                <h3>Total Customers</h3>
-                <h2 id="totalCustomers">500</h2>
-            </div>
-            <div class="box">
-                <h3>Total Orders</h3>
-                <h2 id="totalOrders">600</h2>
-            </div>
-            <div class="box">
-                <h3>Total Revenue</h3>
-                <h2 id="totalRevenue">$0</h2>
-            </div>
-            <div class="box">
-                <h3>Customer Acquisition</h3>
-                <canvas id="customerAcquisitionChart"></canvas>
-            </div>
-            <div class="box">
-                <h3>Order Status</h3>
-                <canvas id="orderStatusChart"></canvas>
-            </div>
-            <div class="box order-count">
-                <h3> Customers Orders</h3>
-                
-                    <p style="text-align: center;">Number of Orders: <span id="orderCount">0</span></p>
-                    
-                    <button type="button" class="btn btn-primary" onclick="redirectToOrders()" style="    margin-left: 110px;
-    margin-top: 20px;">Go to Orders</button>
-                
-            </div>
-            <!-- <div class="box">
-                <h3> Farmer Products</h3>
-                <h2 id="shopCount">89</h2>
-            </div> -->
-            <div id="productList" class="product-list box">
-                <h3> Farmer Products</h3>
-                <h2 id="shopCount">89</h2>
-                <!-- Product items will be populated here -->
-                <button type="button" class="btn btn-primary" onclick="redirectToOrders()">Go to Orders</button>
-            </div>
-            <!-- <div class="box">
-                <h3>Shop Details</h3>
-                <table id="shopTable">
-                    <thead>
-                        <tr>
-                            <th>Fresh Farms</th>
-                            <th>Address</th>
-                            <th>Phone Number</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Dummy data for shop details 
-                        <tr>
-                            <td>Green Grocers</td>
-                            <td>123 Main Street</td>
-                            <td>123-456-7890</td>
-                        </tr>
-                        <tr>
-                            <th>Fresh Farms</th>
-                            <th>Address</th>
-                            <th>Phone Number</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Dummy data for shop details 
-                        <tr>
-                            <td>Green Grocers</td>
-                            <td>123 Main Street</td>
-                            <td>123-456-7890</td>
-                        </tr>
-                        <tr>
-                            <th>Fresh Farms</th>
-                            <th>Address</th>
-                            <th>Phone Number</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Dummy data for shop details 
-                        <tr>
-                            <td>Green Grocers</td>
-                            <td>123 Main Street</td>
-                            <td>123-456-7890</td>
-                        </tr>
-                        <tr>
-                            <th>Fresh Farms</th>
-                            <th>Address</th>
-                            <th>Phone Number</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Dummy data for shop details 
-                        <tr>
-                            <td>Green Grocers</td>
-                            <td>123 Main Street</td>
-                            <td>123-456-7890</td>
-                        </tr>
-                        <!-- Repeat similar rows for more shops 
-                    </tbody>
-                </table> -->
-            </div>
-        </div>
-        <div class="farmers-container">
-            <div class="filter-container">
-                <select id="farmer-category-select" class="category-select">
-                    <option value="all" class="category-option">All Categories</option>
-                    <option value="vegetables" class="category-option">Vegetables</option>
-                    <option value="fruits" class="category-option">Fruits</option>
-                    <option value="dairy" class="category-option">Dairy Products</option>
-                    <option value="daily-products" class="category-option">Daily Products</option>
-                </select>
-            </div>
-            <table class="farmers-table">
-                <thead>
-                    <tr>
-                        <th>Farmer Name</th>
-                        <th>Product Name</th>
-                        <th>Product Image</th>
-                        <th>Availability (kg)</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="farmers-items">
-                    <!-- Farmer details will be injected here by JavaScript -->
-                </tbody>
-            </table>
-            <div id="farmers-empty-message" class="empty-message">
-                <img src="../images/Fruits-img/Banana.jpg" alt="Empty" class="empty-icon">
-                <p>No farmers available.</p>
-            </div>
-        </div>
+        <section id="add-post">
+            <h2 style="text-align: center; font-size: xx-large;">Add Product</h2>
+            <form id="postForm">
+              <label for="post-title">Title</label>
+              <input type="text" id="post-title" name="post-title" required>
+              <label for="post-description">Description</label>
+              <textarea id="post-description" name="post-description" required></textarea>
+              <label for="post-price">Price</label>
+              <input type="number" id="post-price" name="post-price" required>
+              <label for="post-category">Category</label>
+              <select id="post-category" name="post-category" >
+                <option value="">Select Category</option>
+              </select>
+              <label for="post-image">Image</label>
+              <input type="file" id="post-image" name="post-image" accept="image/*" required>
+              <button type="submit">Add Post</button>
+            </form>
+          </section>
+            
         
-    </main>
-    <script>
-
-const products = [
-    { name: "Tomato", category: "Vegetables", price: 2.5 },
-    { name: "Apple", category: "Fruits", price: 1.2 },
-    { name: "Banana", category: "Fruits", price: 0.5 },
-    // Add more product objects as needed
-];
-
-function displayProducts() {
-    const productList = document.getElementById('productList');
-    productList.innerHTML = ''; // Clear previous content
-    
-    products.forEach(product => {
-        const productItem = document.createElement('div');
-        productItem.classList.add('product-item');
-        productItem.innerHTML = `
-            <div class="product-info">
-                <h4>${product.name}</h4>
-                <p>Category: ${product.category}</p>
-                <p>Price: $${product.price.toFixed(2)}</p>
-            </div>
-            <div class="product-actions">
-                <button onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
-            </div>
-        `;
-        productList.appendChild(productItem);
-    });
-}
-
-function addToCart(name, price) {
-    // You can implement cart functionality here
-    console.log(`Added ${name} to cart for $${price.toFixed(2)}`);
-}
-
-// Call the function to display products when the page loads
-window.onload = displayProducts;
-
-        // Dummy data for charts
-        const customerAcquisitionData = {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [{
-                label: 'New Customers',
-                data: [50, 60, 70, 80, 90, 100],
-                backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        };
-
-        const orderStatusData = {
-            labels: ['Pending', 'Processing', 'Completed'],
-            datasets: [{
-                label: 'Orders',
-                data: [20, 30, 50],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(75, 192, 192, 0.5)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)'
-                ],
-                borderWidth: 1
-            }]
-        };
-
-        // Total counts
-        document.getElementById('totalCustomers').textContent = 100;
-        document.getElementById('totalOrders').textContent = 200;
-        document.getElementById('totalRevenue').textContent = '$5000';
-        document.getElementById('shopCount').textContent = 10;
-
-        // Customer Acquisition Chart
-        const customerAcquisitionCtx = document.getElementById('customerAcquisitionChart').getContext('2d');
-        const customerAcquisitionChart = new Chart(customerAcquisitionCtx, {
-            type: 'line',
-            data: customerAcquisitionData,
-        });
-
-        // Order Status Chart
-        const orderStatusCtx = document.getElementById('orderStatusChart').getContext('2d');
-        const orderStatusChart = new Chart(orderStatusCtx, {
-            type: 'bar',
-            data: orderStatusData,
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-    </script>
-
+        
     <!-- ########## START: MAIN PANEL ########## -->
    
             <!-- End Other Elements -->
