@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Vendor Credits</title>
+    <!-- Bootstrap CDN for styling -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f9f9f9;
+        }
+
+        .header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            background-color: white;
+        }
+
+        .dropdown-menu {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .content {
+            text-align: center;
+            padding: 40px 0;
+            background-color: white;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .content h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .btn-main {
+            margin-top: 20px;
+        }
+
+        .import-link {
+            margin-top: 20px;
+            font-size: 14px;
+            display: block;
+        }
+
+        .flowchart-section {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .flowchart {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .flowchart div {
+            border: 1px dashed #007bff;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+        }
+
+        .flowchart div:hover {
+            background-color: #f8f9fa;
+        }
+
+        .flowchart p {
+            margin: 0;
+        }
+
+        .footer {
+            padding: 20px;
+            font-size: 12px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                All Vendor Credits
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">All</a>
+                <a class="dropdown-item" href="#">Draft</a>
+                <a class="dropdown-item" href="#">Pending Approval</a>
+                <a class="dropdown-item" href="#">Open</a>
+                <a class="dropdown-item" href="#">Closed</a>
+                <a class="dropdown-item" href="#">Void</a>
+                <a class="dropdown-item" href="#">New Custom View</a>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary">+ New</button>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="container">
+        <div class="content">
+            <h2>You deserve some credit too.</h2>
+            <p>Create vendor credits and apply them to multiple bills when buying stuff from your vendor.</p>
+            <div class="btn-main">
+                <button class="btn btn-primary">Create Vendor Credits</button>
+            </div>
+            <a href="#" class="import-link">Import Vendor Credits</a>
+        </div>
+
+        <!-- Flowchart Section -->
+        <div class="flowchart-section">
+            <h3>Life cycle of a Vendor Credit</h3>
+            <div class="flowchart">
+                <div>
+                    <p>Product Returned / Cancelled</p>
+                </div>
+                <div>
+                    <p>Credit Note Received</p>
+                </div>
+                <div>
+                    <p>Record Vendor Credits</p>
+                </div>
+                <div>
+                    <p>Mark as Open</p>
+                </div>
+                <div>
+                    <p>Apply to Future Bills</p>
+                </div>
+                <div>
+                    <p>Record Refund</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

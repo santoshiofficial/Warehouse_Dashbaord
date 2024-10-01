@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Purchase Orders</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .dropdown-menu {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .content {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .content h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .btn-create-purchase-order {
+            margin-top: 20px;
+        }
+
+        .flowchart-section {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .flowchart {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .flowchart div {
+            border: 1px dashed #007bff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .flowchart div:hover {
+            background-color: #f8f9fa;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .footer a {
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                All Purchase Orders
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">All</a>
+                <a class="dropdown-item" href="#">Draft</a>
+                <a class="dropdown-item" href="#">Pending Approval</a>
+                <a class="dropdown-item" href="#">Approved</a>
+                <a class="dropdown-item" href="#">Issued</a>
+                <a class="dropdown-item" href="#">Billed</a>
+                <a class="dropdown-item" href="#">Partially Billed</a>
+                <a class="dropdown-item" href="#">Closed</a>
+                <a class="dropdown-item" href="#">Canceled</a>
+                <a class="dropdown-item" href="#">Partially Received</a>
+                <a class="dropdown-item" href="#">New Custom View</a>
+            </div>
+        </div>
+
+        <div class="d-flex">
+            <!-- In Transit Receives Button -->
+            <button class="btn btn-outline-info mr-2">In Transit Receives</button>
+
+            <!-- New Button -->
+            <button class="btn btn-primary">+ New</button>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <h2>Start Managing Your Purchase Activities!</h2>
+        <p>Create, customize, and send professional Purchase Orders to your vendors.</p>
+        <div class="btn-create-purchase-order">
+            <button class="btn btn-primary">CREATE NEW PURCHASE ORDER</button>
+        </div>
+    </div>
+
+    <!-- Flowchart Section -->
+    <div class="flowchart-section">
+        <h3>Life cycle of a Purchase Order</h3>
+        <div class="flowchart">
+            <div>
+                <p>RAISE PURCHASE ORDER</p>
+            </div>
+            <div>
+                <p>CONVERT TO OPEN</p>
+            </div>
+            <div>
+                <p>RECEIVE GOODS</p>
+            </div>
+            <div>
+                <p>CONVERT TO BILL</p>
+            </div>
+            <div>
+                <p>RECORD PAYMENT</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>or using <a href="#">API</a></p>
+    </div>
+
+    <!-- Optional Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
