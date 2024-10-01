@@ -1,7 +1,7 @@
 header.header {
     @include box-shadow(0, 3px, 6px, 0, rgba(0, 0, 0, 0.02));
     border-bottom: 1px solid lighten($primary-color, 40%);
-    height: 91px;
+    height: 61px;
     background: $white-color;
     z-index: 9999;
     @media screen and (max-width: $break-md) {
@@ -91,18 +91,18 @@ header.header {
 .br-header-right {
     nav.nav {
         .dropdown {
-            border-left: 1px solid lighten($primary-color, 35%);
+            border-left: 1px solid lighten($primary-color, 15%);
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 89px;
+            height: 59px;
             @media screen and (max-width: $break-md) {
                 height: 55px;
                 width: 51px;
             }
             .dropdown-toggle,
             .nav-link-profile {
-                height: 89px;
+                height: 59px;
                 display: flex;
                 align-items: center;
                 justify-content: center;

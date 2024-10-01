@@ -73,3 +73,214 @@
 .popup-form button:hover {
     background-color: #0056b3;
 }
+body{
+    margin-top: 8%;
+    margin-left: 12%;
+}
+header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background-color: #008080;
+color: white;
+padding: 10px 20px;
+font-size: 16px;
+}
+
+.header-left p,
+.header-right p {
+margin: 0;
+line-height: 1.5;
+}
+
+.header-left {
+text-align: left;
+}
+
+.header-right {
+text-align: right;
+}
+
+@media (max-width: 600px) {
+header {
+flex-direction: column;
+text-align: center;
+}
+.header-right {
+margin-top: 10px;
+}
+}
+
+
+/* Nav Bar */
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: Arial, sans-serif;
+}
+
+body {
+background-color: #f4f4f9;
+}
+
+header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background-color: #008080;
+color: white;
+padding: 10px 20px;
+font-size: 16px;
+margin-left: 21px;
+}
+
+.header-left p,
+.header-right p {
+margin: 0;
+line-height: 1.5;
+}
+
+.header-left {
+text-align: left;
+}
+
+.header-right {
+text-align: right;
+}
+
+nav {
+background-color: #f8f9fa;
+padding: 10px;
+
+}
+
+nav ul {
+list-style: none;
+display: flex;
+gap: 20px;
+margin-left: 23px;
+}
+
+nav ul li {
+display: inline;
+}
+
+nav ul li a {
+text-decoration: none;
+font-size: 18px;
+color: #008080;
+cursor: pointer;
+}
+
+nav ul li a:hover {
+color: #005959;
+}
+
+.content-section {
+padding: 40px;
+}
+
+@media (max-width: 600px) {
+header {
+flex-direction: column;
+text-align: center;
+}
+.header-right {
+margin-top: 10px;
+}
+
+nav ul {
+flex-direction: column;
+gap: 10px;
+}
+}
+/* Default styles (for larger screens) */
+.dashboard-card {
+background-color: #f9f9f9;
+border: none;
+border-radius: 8px;
+}
+
+.dashboard-card-header {
+background-color: #333;
+color: #fff;
+padding: 10px 15px;
+font-size: 1.2rem;
+}
+
+.legend {
+font-size: 1.5rem;
+color: #333;
+}
+
+.text-red {
+color: #ff4c4c;
+}
+
+.text-success {
+color: #28a745;
+}
+
+.icon {
+fill: currentColor;
+width: 20px;
+height: 20px;
+}
+
+.sales-qty .font-xs {
+font-size: 0.8rem;
+}
+
+/* Mobile view (for screens up to 600px wide) */
+@media screen and (max-width: 600px) {
+.dashboard-card {
+padding: 10px;
+border-radius: 6px;
+}
+
+.dashboard-card-header {
+padding: 8px 12px;
+font-size: 1rem; /* Reduce font size for mobile */
+}
+
+.legend {
+font-size: 1.2rem; /* Adjust font size for better readability */
+}
+
+.icon {
+width: 16px;
+height: 16px; /* Reduce icon size */
+}
+
+.sales-qty .font-xs {
+font-size: 0.7rem; /* Adjust small font size for mobile */
+}
+}
+
+/* Index Side Bar */
+.br-sideleft ul li a {
+display: flex;
+align-items: center;
+padding: 10px;
+font-size: 14px; /* Adjust text size if needed */
+height: 61px;
+font-weight: bold;
+}
+
+.br-sideleft ul li a i {
+font-size: 16px; /* Smaller icon size */
+width: 24px; /* Adjust width for icon spacing */
+margin-right: 10px; /* Space between icon and text */
+text-align: center; /* Center icon inside the width */
+}
+
+.br-sideleft ul li a:hover {
+background-color: #f1f1f1; /* Optional: add hover effect */
+}
+
+.custom-scroll {
+padding-left: 0; /* Remove padding */
+list-style: none; /* Remove bullets */
+}

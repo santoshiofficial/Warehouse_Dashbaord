@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+}
+
+header {
+    background-color: #008080;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.dashboard {
+    display: flex;
+    margin: 20px;
+}
+
+.left-panel {
+    width: 20%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.left-panel ul {
+    list-style: none;
+}
+
+.left-panel ul li {
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.main-panel {
+    width: 80%;
+    margin-left: 20px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-basis: 23%;
+    text-align: center;
+}
+
+.inventory-summary, .product-details, .purchase-order {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.charts {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+canvas {
+    width: 100%;
+    height: 300px;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Zoho Inventory India Helpline: 18005726671</h1>
+        <p>Mon - Fri • 9:00 AM - 7:00 PM • Toll Free</p>
+    </header>
+
+    <section class="dashboard">
+        <div class="left-panel">
+            <h2>Dashboard</h2>
+            <ul>
+                <li>Getting Started</li>
+                <li>Announcements</li>
+                <li>Recent Updates</li>
+            </ul>
+        </div>
+
+        <div class="main-panel">
+            <div class="stats">
+                <div class="card">
+                    <h3>Sales Activity</h3>
+                    <p>0 Qty</p>
+                </div>
+                <div class="card">
+                    <h3>To be Packed</h3>
+                    <p>0 Pkgs</p>
+                </div>
+                <div class="card">
+                    <h3>To be Shipped</h3>
+                    <p>0 Pkgs</p>
+                </div>
+                <div class="card">
+                    <h3>To be Delivered</h3>
+                    <p>0 Qty</p>
+                </div>
+                <div class="card">
+                    <h3>To be Invoiced</h3>
+                </div>
+            </div>
+
+            <div class="inventory-summary">
+                <h3>Inventory Summary</h3>
+                <p>Quantity in Hand: 0</p>
+                <p>Quantity to be Received: 0</p>
+            </div>
+
+            <div class="product-details">
+                <h3>Product Details</h3>
+                <p>Low Stock Items: 0</p>
+                <p>All Item Groups: 0</p>
+                <p>All Items: 0</p>
+                <p>No Active Items</p>
+            </div>
+
+            <div class="charts">
+                <h3>Sales Order Summary (in INR)</h3>
+                <canvas id="salesChart"></canvas>
+            </div>
+
+            <div class="purchase-order">
+                <h3>Purchase Order</h3>
+                <p>This Month</p>
+                <p>Quantity Ordered: 0</p>
+                <p>Total Cost: Rs. 0.00</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        const ctx = document.getElementById('salesChart').getContext('2d');
+const salesChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['01Sep', '03Sep', '05Sep', '07Sep', '09Sep', '11Sep', '13Sep', '15Sep', '17Sep', '19Sep', '21Sep', '23Sep', '25Sep', '27Sep', '29Sep'],
+        datasets: [{
+            label: 'Sales in INR',
+            data: [0, 1000, 2000, 1500, 2500, 3500, 4000, 0],
+            borderColor: '#008080',
+            backgroundColor: 'rgba(0, 128, 128, 0.2)',
+            fill: true,
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+    </script>
+</body>
+</html>

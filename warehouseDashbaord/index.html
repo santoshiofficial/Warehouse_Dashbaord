@@ -21,319 +21,14 @@
 
     <!-- Custom Css -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css"
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="auth.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-    }
-    
-    header {
-        background: #007bff;
-        color: white;
-        padding: 1rem;
-        text-align: center;
-    }
-    
-    nav ul {
-        list-style: none;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-    }
-    
-    nav ul li {
-        margin: 0 10px;
-    }
-    
-    nav ul li a {
-        color: white;
-        text-decoration: none;
-    }
-    
-    main {
-        padding: 20px;
-    }
-    
-    h2 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    
-    .container {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        margin-top: 75px;
-        margin-left: 135px;
-    }
-    
-    .box {
-        background-color: white;
-        border-radius: 5px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        width: calc(33.33% - 20px);
-    }
-    
-    .box h3 {
-        margin-top: 0;
-        text-align: center;
-    }
-    
-    canvas {
-        max-width: 100%;
-        height: auto;
-    }
-    
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-    
-    th, td {
-        border: 1px solid #ccc;
-        padding: 10px;
-        text-align: left;
-    }
-    
-    th {
-        background-color: #f2f2f2;
-    }
-   /* Dropdown Styles */
-.dropdown-parent {
-    position: relative;
-}
-
-.dropbtn {
-    display: block;
-    cursor: pointer; /* Ensure cursor changes to pointer on clickable items */
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-    z-index: 1;
-    border-radius: 5px;
-    right: 0;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    transition: background-color 0.3s ease;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-.dropdown-parent.active .dropdown-content {
-    display: block;
-}
-    /* Toggle for Sidebar */
-@media (max-width: 768px) {
-    .br-sideleft {
-        transform: translateX(-100%);
-    }
-
-    .br-sideleft.active {
-        transform: translateX(0);
-    }
-
-    .overlay-background.active {
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 999;
-    }
-}
-@media screen and (max-width: 600px){
- .container{
-    display: flex;
-    flex-direction: column;
- }
- .box{
-    width: 100%;
- }
- 
-}
-
-@media screen and (max-width: 1200px) {
-    .br-sideleft {
-        /* -moz-transform: translate(-200px, 0);
-        -o-transform: translate(-200px, 0);
-        -ms-transform: translate(-200px, 0); */
-        -webkit-transform: translate(0px, 0);
-        transform: translate(0px, 0);
-    }
-}
-/* General table styling */
-/* General table styling */
-.farmers-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    margin-left: 11%;
-}
-
-.farmers-table th, .farmers-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-.farmers-table th {
-    background-color: #f4f4f4;
-}
-
-/* Image styling */
-.product-image {
-    width: 50px;
-    height: auto;
-}
-
-/* Empty message styling */
-.empty-message {
-    display: none;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.empty-icon {
-    width: 50px;
-    height: auto;
-}
-
-/* Button styling */
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-button.remove-farmer {
-    background-color: #f44336; /* Red for remove button */
-}
-
-button.place-order {
-    background-color: #008CBA; /* Blue for place order button */
-}
-
-/* Mobile responsiveness */
-@media screen and (max-width: 768px) {
-    .farmers-table {
-        border: 0;
-    }
-    
-    .farmers-table thead {
-        display: none;
-    }
-    
-    .farmers-table, .farmers-table tbody, .farmers-table tr, .farmers-table td {
-        display: block;
-        width: 100%;
-    }
-    
-    .farmers-table td {
-        text-align: right;
-        position: relative;
-        padding-left: 50%;
-        box-sizing: border-box;
-        border: none;
-        border-bottom: 1px solid #ddd;
-    }
-    
-    .farmers-table td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 0;
-        width: 50%;
-        padding-left: 10px;
-        font-weight: bold;
-        text-align: left;
-    }
-    
-    .farmers-table td:last-child {
-        border-bottom: 0;
-    }
-
-    .category-select {
-        width: 100%;
-        padding: 12px;
-        font-size: 16px;
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-    }
-}
-
-/* Dropdown styling for better view on smaller screens */
-.filter-container {
-    margin-bottom: 20px;
-    padding: 0 10px;
-}
-/* General styling for filter container and category select dropdown */
-.filter-container {
-    margin: 20px 0; /* Add margin to space out from other elements */
-    padding: 0 10px; /* Add padding to give some space on the sides */
-    text-align: center; /* Center-align the dropdown */
-}
-
-.category-select {
-    width: 50%; /* Full width for mobile screens */
-    padding: 12px; /* Increase padding for better touch interaction */
-    font-size: 16px; /* Larger font size for readability */
-    background-color: #fff; /* White background for better contrast */
-    border: 1px solid #ddd; /* Light border for definition */
-    border-radius: 4px; /* Rounded corners for modern look */
-    appearance: none; /* Remove default styling */
-    -webkit-appearance: none; /* Remove default styling in WebKit browsers */
-    text-align: center;
-    -moz-appearance: none; /* Remove default styling in Firefox */
-}
-
-
-/* Mobile responsiveness */
-@media screen and (max-width: 768px) {
-    .filter-container {
-        padding: 0 10px; /* Add some padding for mobile devices */
-    }
-
-    .category-select {
-        font-size: 16px; /* Ensure font size is readable on mobile */
-        padding: 12px; /* Ensure padding is sufficient for touch interactions */
-    }
-}
-
-
-</style>    
+      
 </head>
 
 <body>
@@ -379,62 +74,24 @@ button.place-order {
         <div class="br-logo d-flex justify-content-center align-items-center">
             <a href="index.html"><img src="assets/image/logo1.jpeg" alt="Milko Dashboard Panel" width="80" /></a>
         </div>
-        <ul class="custom-scroll ">
-            <li class="active"><a href="index.html" class="waves-effect waves-primary"><i
-                        class="la la-dashboard"></i>Dashboard</a></li>
+        <ul class="custom-scroll">
+            <li class="active"><a href="index.html" class="waves-effect waves-primary"><i class="la la-dashboard"></i>Dashboard</a></li>
             <li><a href="Farmer-Board.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Farmer-Board</a></li>
-          
-            <!-- <li><a href="ManageCategory.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Manage Category</a></li> -->
-            <!-- <li><a href="javascript:;" class="waves-effect waves-primary"><i
-                        class="la la-bullhorn"></i>Campaign</a></li> -->
-            <!-- <li class="dropdown-sub-menu">
-                <a href="Customers.html" class="waves-effect waves-primary"><i
-                            class="la la-users"></i>Customers</a> -->
-                <!-- <ul class="sub-menu">
-                        <li><a href="javascript:;"><i class="la la-users"></i>New Customers</a></li>
-                        <li><a href="javascript:;"><i class="la la-users"></i>Old Customers</a></li>
-                    </ul> -->
-            </li>
-            <!-- <li><a href="Orders.html" class="waves-effect waves-primary"><i
-                            class="la la-cart-arrow-down"></i>Orders</a></li> -->
-
-
             <li><a href="Orders.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Shop-Board</a></li>
-                            
-                            
-                            
             <li><a href="Messages.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Stock-Board</a></li>
-            <li><a href="Payment.html" class="waves-effect waves-primary"><i class="la la-bank"></i>Payments</a>
-                <li><a href="Payment.html" class="waves-effect waves-primary"><i class="la la-bank"></i>Payment-History</a>
-            </li>
-            
-                <!-- <li class="dropdown"><a href="Manageshop.html" class=" dropbtn"></i>Farmer Section</a>
-                    
-                </li> -->
-                <!-- <li class="dropdown-parent">
-                    <a href="#" class="waves-effect waves-primary dropbtn" onclick="toggleDropdown(event, 'ordersDropdown')">
-                        <i class="la la-image"></i> Farmer Section
-                    </a>
-                    <div id="ordersDropdown" class="dropdown-content">
-                        <a href="Farmer_Order.html" class="waves-effect waves-primary">Order Form</a>
-                        <a href="Farmer_HistoryOrder.html" class="waves-effect waves-primary">History Orders</a>
-                        <a href="Farmer_FarmerDetail.html" class="waves-effect waves-primary">Farmer Details</a>
-                        <a href="Farmer_PaymentHistory.html" class="waves-effect waves-primary">Payment History</a>
-                        <a href="Farmer_PaymentGateway.html" class="waves-effect waves-primary">Cart</a>
-                        <a href="Farmer_Wallet.html" class="waves-effect waves-primary">Wallet</a>
-                    </div>
-                </li> -->
-                <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Notice Add</a>
-                <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Wallet</a>
-                    <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Billing</a>
-            <li><a href="Setting.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Settings</a>
-            <li><a href="../index.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Logout</a>
-            </li>
+            <li><a href="Payment.html" class="waves-effect waves-primary"><i class="la la-bank"></i>Payments</a></li>
+            <li><a href="Payment.html" class="waves-effect waves-primary"><i class="la la-bank"></i>Payment-History</a></li>
+            <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Notice Add</a></li>
+            <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Wallet</a></li>
+            <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Billing</a></li>
+            <li><a href="Setting.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Settings</a></li>
+            <li><a href="../index.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Logout</a></li>
         </ul>
     </div>
+    
     <!-- ########## END: LEFT PANEL ########## -->
 
-    <header class="header fixed-top d-flex align-items-center">
+    <header class="header fixed-top d-flex align-items-center" style="height: 15%;">
         <!-- ########## START: HEAD PANEL ########## -->
         <div class="br-header d-flex w-100">
             <a id="add-menu" class="la la-navicon d-flex d-xl-none align-items-center justify-content-center"></a>
@@ -446,9 +103,9 @@ button.place-order {
                 </form>
             </div>
             <!-- br-header-left -->
-            <div class="br-header-right ml-auto">
-                <nav class="nav">
-                    <div class="dropdown">
+            <div class="br-header-right ml-auto" >
+                <nav class="nav" >
+                    <div class="dropdown" >
                         <a href="" class="nav-link position-relative dropdown-toggle waves-effect waves-primary" id="dropdownPaymentHistory" data-toggle="dropdown">
                             <i class="la la-history"></i>
                             <span class="badge badge-accent">3</span> <!-- Number of payment history entries -->
@@ -756,254 +413,435 @@ button.place-order {
         <!-- ########## END: HEAD PANEL ########## -->
     </header>
     <main>
-        <!-- <h2>Dashboard Overview</h2> -->
-        <div class="container">
-            <div class="box">
-                <h3>Total Customers</h3>
-                <h2 id="totalCustomers">500</h2>
+        <header>
+            <div class="header-left">
+                <p>Hello, bgvngo<br>ARD</p>
             </div>
-            <div class="box">
-                <h3>Total Orders</h3>
-                <h2 id="totalOrders">600</h2>
+            <div class="header-right">
+                <p>Zoho Inventory India Helpline: 18005726671<br>
+                Mon - Fri • 9:00 AM - 7:00 PM • Toll Free</p>
             </div>
-            <div class="box">
-                <h3>Total Revenue</h3>
-                <h2 id="totalRevenue">$0</h2>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="#" id="dashboard-link">Dashboard</a></li>
+                <li><a href="#" id="announcements-link">Announcements</a></li>
+            </ul>
+        </nav>
+    
+        <section id="content">
+            <!-- Content will be loaded here dynamically -->
+            <div id="dashboard-content" class="content-section" style="display: none;">
+                <h2>Dashboard</h2>
+                <div style="max-width: 1200px; margin-bottom: 50px;" class="dashboard-row">
+                    <div class="row dashboard-section">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-8 sales-activity">
+                            <div class="card dashboard-card">
+                                <div class="card-header dashboard-card-header" style="color: black;">Sales Activity</div> 
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                    <div class="so-inner-widget text-center">
+                                        <p class="mb-0 cursor-pointer" data-ember-action="" data-ember-action-708="708">
+                                        <div class="legend over-flow fw-light text-open" id="f133647f-2cbf-48ca-ae8c-0d9e3e935ae1" tabindex="0" aria-describedby="d39bec30-b902-4a6a-8e9f-8e3b7bc1bdcd ">0</div> 
+                                         <div class="sales-qty">
+                                            <span class="font-xs">Qty</span>
+                                        </div>
+                                    </p>
+                             <div class="qty-label">
+                              <label class="fw-light text-uppercase"> 
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon icon-xs align-text-top me-2">
+                            <path d="M256 32c30.3 0 59.6 5.9 87.2 17.6 26.7 11.3 50.6 27.4 71.2 48s36.7 44.5 48 71.2c11.7 27.6 17.6 56.9 17.6 87.2s-5.9 59.6-17.6 87.2c-11.3 26.7-27.4 50.6-48 71.2s-44.5 36.7-71.2 48C315.6 474.1 286.3 480 256 480s-59.6-5.9-87.2-17.6c-26.7-11.3-50.6-27.4-71.2-48s-36.7-44.5-48-71.2C37.9 315.6 32 286.3 32 256s5.9-59.6 17.6-87.2c11.3-26.7 27.4-50.6 48-71.2s44.5-36.7 71.2-48C196.4 37.9 225.7 32 256 32m0-32C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0z"></path>
+                        <path d="M223 336h-.1c-4.3 0-8.3-1.8-11.3-4.8l-62.5-64c-6.2-6.3-6.1-16.4.3-22.6 6.3-6.2 16.4-6.1 22.6.3l51.2 52.4 117.6-116.6c6.3-6.2 16.4-6.2 22.6.1 6.2 6.3 6.2 16.4-.1 22.6l-129 128c-3 2.9-7.1 4.6-11.3 4.6z"></path>
+                    </svg>To be Packed</label>
+                </div>
+            </div>
+             <div class="so-inner-widget-separator"></div>
+              <div class="so-inner-widget text-center"><a id="ember709" class="ember-view" href="#/packages?filter_by=Status.NotShipped">
+                <div class="legend over-flow fw-light text-red" id="f06dee07-e9e2-4b29-8c7d-30a7dd3ab728" tabindex="0" aria-describedby="d27de49c-a817-4e0c-85c6-ccccbc672f25 ">0</div> <!----> 
+                <div class="sales-qty"><span class="font-xs">Pkgs</span></div>
+                        </a> <div class="qty-label"><label class="fw-light text-uppercase">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon icon-xs align-text-top me-2">
+                                <path d="M256 32c30.3 0 59.6 5.9 87.2 17.6 26.7 11.3 50.6 27.4 71.2 48s36.7 44.5 48 71.2c11.7 27.6 17.6 56.9 17.6 87.2s-5.9 59.6-17.6 87.2c-11.3 26.7-27.4 50.6-48 71.2s-44.5 36.7-71.2 48C315.6 474.1 286.3 480 256 480s-59.6-5.9-87.2-17.6c-26.7-11.3-50.6-27.4-71.2-48s-36.7-44.5-48-71.2C37.9 315.6 32 286.3 32 256s5.9-59.6 17.6-87.2c11.3-26.7 27.4-50.6 48-71.2s44.5-36.7 71.2-48C196.4 37.9 225.7 32 256 32m0-32C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0z"></path>
+                            <path d="M369.4 204.1c0-3.7-2.2-7.1-5.6-8.8l-103.5-51.8c-2.7-1.4-6-1.4-8.7 0l-103.4 51.7c-3.5 1.7-5.7 5.3-5.7 9.2v103.3c0 3.7 2.1 7 5.4 8.7L247 366c2 2.3 5.1 3.5 8.2 3.3 1.8.1 3.5-.2 5.1-1L364 316.5c3.3-1.6 5.4-5 5.4-8.7V204.1zM256 245.2l-31-15.5 82-41 30.9 15.5-81.9 41zm0-82l29.3 14.6-82 41-29.3-14.6 82-41zm-94 56.7l31 15.4V256c0 5.3 4.2 9.7 9.5 9.7s9.5-4.4 9.5-9.7v-10.9l33 16.2v81.9l-83-41.3v-82zm102 124.9v-81.9l86-43v81.9l-86 43z"></path></svg>To be Shipped</label></div></div> <div class="so-inner-widget-separator"></div> <div class="so-inner-widget text-center"><a id="ember710" class="ember-view" href="#/packages?filter_by=Status.Shipped"><div class="legend over-flow fw-light text-success" id="c870c366-3888-46db-98f8-cacdbad60665" tabindex="0" aria-describedby="e8c5ddee-ac50-409c-96f9-36b4b5ab5760 ">0</div> <!----> <div class="sales-qty"><span class="font-xs">Pkgs</span></div></a> <div class="qty-label"><label class="fw-light text-uppercase">
+                                <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon icon-xs align-text-top me-2"><g id="Layer_1-2"><path d="M437 75C388.7 26.6 324.4 0 256 0S123.3 26.6 75 75C26.6 123.3 0 187.6 0 256s26.6 132.7 75 181c48.4 48.4 112.6 75 181 75s132.7-26.6 181-75c48.4-48.4 75-112.6 75-181s-26.6-132.7-75-181zm-28.3 333.8c-40.8 40.8-95 63.3-152.7 63.3s-111.9-22.5-152.7-63.3S40 313.8 40 256.1s22.5-111.9 63.3-152.7c40.8-40.8 95-63.3 152.7-63.3s111.9 22.5 152.7 63.3c40.8 40.8 63.3 95 63.3 152.7S449.5 368 408.7 408.8z"></path><path d="M256.1 224.9c-17.3 0-31.2 14-31.2 31.2s14 31.2 31.2 31.2 31.2-14 31.2-31.2-14-31.2-31.2-31.2zM135.7 224.9c-17.3 0-31.2 14-31.2 31.2s14 31.2 31.2 31.2 31.2-14 31.2-31.2-14-31.2-31.2-31.2zM376.5 224.9c-17.3 0-31.2 14-31.2 31.2s14 31.2 31.2 31.2 31.2-14 31.2-31.2-14-31.2-31.2-31.2z"></path></g></svg>To be Delivered</label></div></div> <div class="so-inner-widget-separator"></div> <div class="so-inner-widget text-center"><p class="mb-0 cursor-pointer" data-ember-action="" data-ember-action-711="711">
+    
+                                    <div class="legend over-flow fw-light text-parshipped" id="ccc21cef-92f6-4b7f-a484-ed8f254354b6" tabindex="0" aria-describedby="cf0ad058-f512-4d17-b515-39bea7ff076b ">0</div> <!----> 
+                                    <div class="sales-qty"><span class="font-xs">Qty</span>
+                                    </div></p>
+                                     <div class="qty-label"><label class="fw-light text-uppercase"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon icon-xs align-text-top me-2"><path d="M256 32c30.3 0 59.6 5.9 87.2 17.6 26.7 11.3 50.6 27.4 71.2 48s36.7 44.5 48 71.2c11.7 27.6 17.6 56.9 17.6 87.2s-5.9 59.6-17.6 87.2c-11.3 26.7-27.4 50.6-48 71.2s-44.5 36.7-71.2 48C315.6 474.1 286.3 480 256 480s-59.6-5.9-87.2-17.6c-26.7-11.3-50.6-27.4-71.2-48s-36.7-44.5-48-71.2C37.9 315.6 32 286.3 32 256s5.9-59.6 17.6-87.2c11.3-26.7 27.4-50.6 48-71.2s44.5-36.7 71.2-48C196.4 37.9 225.7 32 256 32m0-32C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0z"></path>
+                                        <path d="M255 160l65 65v119c0 4.4-3.6 8-8 8H200c-4.4 0-8-3.6-8-8V168c0-4.4 3.6-8 8-8h55m0-20h-55c-15.4 0-28 12.6-28 28v176c0 15.4 12.6 28 28 28h112c15.4 0 28-12.6 28-28V225c0-5.3-2.1-10.4-5.9-14.1l-65-65c-3.7-3.8-8.8-5.9-14.1-5.9zm33 180h-64"></path><path d="M288 330h-64c-5.5 0-10-4.5-10-10s4.5-10 10-10h64c5.5 0 10 4.5 10 10s-4.5 10-10 10zm0-42h-64m64 10h-64c-5.5 0-10-4.5-10-10s4.5-10 10-10h64c5.5 0 10 4.5 10 10s-4.5 10-10 10zm32-63h-64c-5.5 0-10-4.5-10-10v-65c0-5.5 4.5-10 10-10s10 4.5 10 10v55h54c5.5 0 10 4.5 10 10s-4.5 10-10 10z"></path>
+                                    </svg>To be Invoiced</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+                                        
+                                        
+                                        
+                                        
+            <div class="col-lg-4 col-md-4 col-sm-4 col-4 inventory-summary">
+                <div class="card dashboard-card">
+                    <div class="card-header dashboard-card-header" style="color: black;">
+                        Inventory Summary
+                    </div> 
+                    <div class="card-body">
+                        <div class="inv-summary">
+                            <label class="text-uppercase fw-light font-small text-void w-65">Quantity in Hand</label> 
+                            <a id="ember703" class="ember-view" href="#/reports/inventorysummary">
+                                <div class="cursor-pointer float-end qty over-flow icon-xlarge text-plain" id="ebf34d1a-6088-404b-b0ad-e2dd9f431e1f" tabindex="0" aria-describedby="d40ccb78-375c-4baf-b1a6-4463fbbda59b">0</div>
+                            </a>
+                        </div> 
+                        <div class="inv-summary">
+                            <label class="text-uppercase fw-light font-small text-void w-65">Quantity to be Received</label> 
+                            <a id="ember702" class="ember-view" href="#/purchaseorders?filter_by=Status.ToBeReceived">
+                                <div class="cursor-pointer float-end qty over-flow icon-xlarge text-plain" id="ee124b8a-3fe0-45d1-b343-19f7e72ae105" tabindex="0" aria-describedby="d16d5245-3da2-453d-8529-17a0655798c7">0</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             </div>
+         </label>
+    
+                    <!-- 2nd section -->
+                    <div class="row dashboard-section"><div class="col-lg-6 col-md-6 col-sm-6 col-6"><div class="card dashboard-card"><div class="card-header dashboard-card-header" style="color: black;">Product Details <!----></div> <div class="row product-details card-body align-items-center marketplace-details"><div class="col-lg-7 col-md-7 col-sm-7 col-7 total-summary"><div class="item"><label class="fw-light text-red w-75 text-truncate" style="font-size: 17px"><span id="f5a86c49-6e18-4d83-961a-c4a531f4d4c6" tabindex="0" aria-describedby="d2290013-9772-41f9-9371-0c567cdfd57b ">Low Stock Items</span> <!----></label> <a id="ember598" class="ember-view" href="#/inventory/items?filter_by=Status.Lowstock"><label class="cursor-pointer float-end text-red font-xlarge text-semibold">0</label></a></div> <div class="item font-large pb-0">
+                        <label class="fw-light text-void w-75 text-truncate" style="font-size: 17px"><span id="f0429d88-f6db-4a89-9dbb-3eb8d0e47a71" tabindex="0" aria-describedby="cbb181ae-ae6c-4935-9066-30087bb5df39 ">All Item Groups</span> <!----></label> <a id="ember599" class="ember-view" href="#/inventory/itemgroups?filter_by=Status.All"><label class="cursor-pointer float-end text-plain font-xlarge text-semibold">0</label></a></div> <div class="item font-large pb-0"><label class="fw-light text-void w-75 text-truncate" style="font-size: 17px"><span id="dd46283c-474b-4f6b-bedc-db4a336ce77c" tabindex="0" aria-describedby="de2613f6-553e-4143-bd26-f55707d0cc87 ">All Items</span> <!----></label> <a id="ember600" class="ember-view" href="#/inventory/items?filter_by=Status.All"><label class="cursor-pointer float-end text-plain font-xlarge text-semibold">0</label></a></div> 
+                        <div class="item font-large pb-0"><label class="fw-light font-large w-75 text-truncate text-plain"><span id="f10f3f93-0931-4add-9b35-0eb68d148f06" tabindex="0" aria-describedby="c4259132-ab4d-4913-90b4-d05863da2001 ">Unconfirmed Items</span> <!----> <span class="cursor-pointer" id="c72e6aa3-4bf7-418f-9c43-fc510ef40855" tabindex="0" aria-labelledby="ccd0cd93-8b5c-409d-a3ec-1397c5b3007e "><!----></span> <!----></label> <a id="ember707" class="ember-view" href="#/inventory/items?filter_by=Status.ConfirmationPending">
+                            <label class="cursor-pointer float-end font-xlarge text-semibold text-plain"></label></a></div></div> <div class="col-lg-5 col-md-5 col-sm-5 col-5 text-center"><label class="fw-light font-large text-void mb-0 w-75 text-truncate"><span id="fc8b53e6-f859-45de-a656-140acf666f9c" tabindex="0" aria-describedby="fcb1f194-5d0c-476d-831c-e935ff84e059 ">
+                                Active Items</span> <!---->
+                            </label> 
+                            <div class="text-center text-draft empty-activeitems">
+                                No Active Items
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                <div class="card dashboard-card placeholder-container">
+                    <div class="card-header dashboard-card-header d-flex align-items-center justify-content-between" style="color: black;">
+                        Top Selling Items 
+                        <div class="cursor-pointer dashboard-daterange-picker">
+                            <!-- <div id="daterangePicker" class="zf-daterange-picker ember-view">
+                                <span id="selectedRange" class="range-text notranslate">This Month</span>
+                                <span class="caret"></span>
+                            </div> -->
+                            
+                            <!-- Dropdown for the date range options -->
+                            <select id="daterangeDropdown" class="daterange-dropdown" onchange="updateRangeText()" style="border: none;">
+                                <option value="This Week">This Week</option>
+                                <option value="Previous Week">Previous Week</option>
+                                <option value="This Month" selected>This Month</option>
+                                <option value="Previous Month">Previous Month</option>
+                                <option value="This Quarter">This Quarter</option>
+                                <option value="Previous Quarter">Previous Quarter</option>
+                                <option value="This Year">This Year</option>
+                                <option value="Previous Year">Previous Year</option>
+                            </select>
+                        </div>
+                        
+                        </div> <div class="placeholder-container">
+                            <div class="top-selling-details">
+                                <div class="text-center" style="padding: 90px;">
+                                    <label class="fw-light text-muted">No items were invoiced in this time frame</label>
+                                </div></div></div></div></div></div>
+    
+     
+                        <!--3rd section -->
+    
+                        <div class="row dashboard-section">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-4 po-widget">
+                                <div class="po-details po-details-widget card dashboard-card">
+                                    <div class="card-header dashboard-card-header d-flex align-items-center justify-content-between" style="color: black;">
+                                        Purchase Order 
+                                        <div class="cursor-pointer dashboard-daterange-picker">
+                                            <div end_date="Mon Sep 30 2024 23:59:59 GMT+0530 (India Standard Time)" start_date="Sun Sep 01 2024 00:00:00 GMT+0530 (India Standard Time)" id="ember677" class="zf-daterange-picker ember-view"><!---->
+                                                <!-- Dropdown for the date range options -->
+                            <select id="daterangeDropdown" class="daterange-dropdown" onchange="updateRangeText()" style="border: none;     width: 117px;">
+                                <option value="This Week">This Week</option>
+                                <option value="Previous Week">Previous Week</option>
+                                <option value="This Month" selected>This Month</option>
+                                <option value="Previous Month">Previous Month</option>
+                                <option value="This Quarter">This Quarter</option>
+                                <option value="Previous Quarter">Previous Quarter</option>
+                                <option value="This Year">This Year</option>
+                                <option value="Previous Year">Previous Year</option>
+                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                        <div class="card-body">
+                            <div class="po-field text-center">
+                                <label class="db-po-label fw-light mt-0">Quantity Ordered</label> 
+                                <p class="top-quantity over-flow text-blue">0</p>
+                            </div> 
+                            <div class="po-field text-center">
+                                <label class="db-po-label fw-light mt-0">Total Cost</label>
+                                 <p class="top-quantity over-flow text-blue direction-ltr">Rs.0.00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-8 so-widget">
+                        <div class="so-details-container card dashboard-card">
+                            <div class="card-header dashboard-card-header d-flex align-items-center justify-content-between" style="color: black;">
+                                Sales Order
+                                 <div class="cursor-pointer dashboard-daterange-picker">
+                                    <div end_date="Mon Sep 30 2024 23:59:59 GMT+0530 (India Standard Time)" start_date="Sun Sep 01 2024 00:00:00 GMT+0530 (India Standard Time)" id="ember679" class="zf-daterange-picker ember-view"><!---->
+                                        <!-- Dropdown for the date range options -->
+                            <select id="daterangeDropdown" class="daterange-dropdown" onchange="updateRangeText()" style="border: none;width: 117px;">
+                                <option value="This Week">This Week</option>
+                                <option value="Previous Week">Previous Week</option>
+                                <option value="This Month" selected>This Month</option>
+                                <option value="Previous Month">Previous Month</option>
+                                <option value="This Quarter">This Quarter</option>
+                                <option value="Previous Quarter">Previous Quarter</option>
+                                <option value="This Year">This Year</option>
+                                <option value="Previous Year">Previous Year</option>
+                            </select>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="dashboard-scrollable">
+                                <table class="table table-no-border so-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="w-20">Channel</th>
+                                             <th>Draft</th>
+                                              <th>Confirmed</th> 
+                                              <th>Packed</th> 
+                                            <th>Shipped</th>
+                                             <th>Invoiced</th>
+                                            </tr>
+                                        </thead>
+                                         <tbody>
+                                            <tr class="empty-list">
+                                                <th colspan="6">
+                                                    <h5 class="fw-light text-muted text-center" style="padding-top: 75px;">
+                                                        No sales were made in this time frame
+                                                    </h5>
+                                                </th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+           
+                            <!--4rd section -->
+    
+    
+            </div>
         </div>
+            
+        
+        <div id="announcements-content" class="content-section" style="display: none;">
+                <h2>Announcements</h2>
+                <div class="segregator-wrapper ms-9 pt-7"><!----><!---->
+                     <div>
+                        <div class="position-relative me-5 me-xl-0 ">
+                            <div class="separation-identifier text-center">
+                                <div class="lh-100 font-normal text-dark-shade-blue text-semibold">27</div> 
+                                <div class="text-light-shade-blue font-9 text-semibold text-uppercase">Sep</div>
+                            </div> 
+                            <div class="row m-0 announcement-card-wrapper"><!---->
+                                 <div class="col-xl-11 announcement-card border-top ps-5 pe-2 ">
+                                    <div class="announcement-content rounded-xlg d-flex expanded-view">
+                                        <div class="announcement-image flex-shrink-0 rounded-xlg">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 95" class="icon rounded-xlg w-100 h-100">
+                                                <defs><clipPath id="a"><path fill="none" d="M25 26.62h45.65v47.2H25z"></path>
+                                                </clipPath></defs><path d="M0 0h160v95H0V0z" fill="#e8f2ff"></path>
+                                                <path d="M94.79 41.44l20.57-1.07c1.85-.1 3.67.55 5.05 1.79l4.1 3.69a6.99 6.99 0 005.05 1.79l9.09-.47m-67.16 4.37l16.24-.84c3.18-.16 6.29.94 8.66 3.07l13.75 12.39c2.36 2.13 5.48 3.24 8.66 3.07l4.68-.24M56.7 44.05l11.88-.62c3.18-.16 6.16-1.59 8.29-3.95l8.99-9.97c2.13-2.36 5.11-3.78 8.29-3.95l10.96-.57" fill="none" opacity=".15" stroke="#4f729f" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M68.67 64.98c-1.32.24-2.72-.39-4.04-1.69-1.91-1.86-3.68-5.1-4.92-9.11l5.11-2.2c.68-.12 1.08-1.26 1.03-2.74-.01-.38-.05-.79-.13-1.2-.08-.42-.18-.81-.3-1.18-.47-1.4-1.23-2.33-1.92-2.2l-5.47-.07c-.2-4.42.46-8.22 1.78-10.54.76-1.33 1.73-2.17 2.89-2.38 3.91-.7 8.42 6.18 10.07 15.38 1.65 9.2-.19 17.23-4.1 17.93z" fill="#3b5a83"></path>
+                                                <g clip-path="url(#a)">
+                                                <path d="M40 72.62l-.76.36L38 59.12l2.25-2.11-.26-1.34c.67-.02 1.37-.04 2.08-.04l1 .37-1.95 2.5 3.82 10.28c-.44 2.85-4.02 3.44-4.94 3.85z" fill="#3b5a83"></path>
+                                                <path d="M65 62.62c-6.56-2.28-14.29-2.81-20.61-2.74-.72 0-1.41.02-2.09.05-3.18.1-5.88.34-7.7.54h-.05c-1.63.18-1.77-1.37-2.56-2.85-2.77-5.2-2.69-7.85-1.45-9.45.51-.66 1.2-1.14 1.99-1.38 13.76-4.31 23.19-10.7 27.63-14.17-1.33 2.39-1.99 6.28-1.79 10.81.07 1.64.26 3.37.57 5.14.29 1.65.67 3.23 1.12 4.7 1.24 4.11 3.02 7.43 4.94 9.34z" fill="#3b5a83"></path>
+                                                <path d="M40.97 72.08l-2.71 1.09c-.83.33-1.76-.13-1.99-1l-3-11.42-1.33-.7-.83-3.32c1.81-.19 4.5-.42 7.67-.52l.26 1.34-1.25 1.95 4.01 10.68c.28.76-.09 1.6-.83 1.9z" fill="#fffefe" stroke="#231f20" stroke-miterlimit="10" stroke-width=".7"></path>
+                                                <path d="M61.37 58.83c-6.53-2.22-14.23-2.74-20.51-2.67-.71 0-1.41.02-2.08.04-3.17.1-5.86.33-7.67.52h-.05c-1.63.17-3.2-.65-3.98-2.09-2.76-5.06-1.24-8.34 0-9.9.51-.64 1.2-1.11 1.98-1.35 13.7-4.2 23.09-10.44 27.5-13.81-1.32 2.33-1.98 6.12-1.78 10.54.07 1.6.26 3.29.57 5.01.29 1.61.66 3.14 1.11 4.58 1.24 4.01 3.01 7.25 4.92 9.11z" fill="#cee4ff" stroke="#231f20" stroke-miterlimit="10" stroke-width=".7"></path>
+                                                <path d="M28.5 43.62c1.2-.4 7.83-2.83 11-4-3.6 6.4-.5 13.67 1.5 16.5-2.33 0-7.6.1-10 .5-3 .5-5-2.5-5.5-7-.4-3.6 1.83-5.5 3-6z" fill="#8db3e3" stroke="#231f20" stroke-miterlimit="10" stroke-width=".7"></path>
+                                                <path d="M61.57 47.52c-.86.15-1.85-1.36-2.21-3.38-.36-2.02.04-3.79.9-3.94.68-.12 1.45.8 1.92 2.2l.43 2.38c.05 1.48-.35 2.62-1.03 2.74z" fill="#8db3e3"></path>
+                                                <path d="M61.57 47.52l-5.11 2.2c-.45-1.44-.82-2.98-1.11-4.58-.31-1.73-.5-3.41-.57-5.01l5.47.07c-.86.15-1.26 1.92-.9 3.94s1.35 3.54 2.21 3.38z" fill="#fff" stroke="#231f20" stroke-miterlimit="10" stroke-width=".7"></path>
+                                                <path d="M65.42 60.52c-1.32.24-2.72-.39-4.04-1.69-1.91-1.86-3.68-5.1-4.92-9.11l5.11-2.2c.68-.12 1.08-1.26 1.03-2.74-.01-.38-.05-.79-.13-1.2-.08-.42-.18-.81-.3-1.18-.47-1.4-1.23-2.33-1.92-2.2l-5.47-.07c-.2-4.42.46-8.22 1.78-10.54.76-1.33 1.73-2.17 2.89-2.38 3.91-.7 8.42 6.18 10.07 15.38 1.65 9.2-.19 17.23-4.1 17.93z" fill="#fff" stroke="#231f20" stroke-miterlimit="10" stroke-width=".7"></path>
+                                            </g>
+                                        </svg>
+                                    </div> 
+                                    <div class="flex-grow-1 row">
+                                        <div class="col-xl-8 ps-8 mb-xl-0 mb-4 text-dark-shade-blue">
+                                            <div class="text-black-semibold lh-180 font-large text-medium btn-link cursor-pointer"><!---->
+                                                 Archival of GST Return Data in GST Portal
+                                                </div> 
+                                                <div class="font-normal preserve-wrap ">
+                                                    As per the GST portal's data policy, return data is accessible only for seven years. Returns older than this will be archived monthly. Returns for July 2017 were archived on August 1, 2024, August 2017 returns on September 1, 2024, and September 2017 data will be archived on October 1, 2024. We recommend downloading the data from the portal for future reference before it is archived.
+                                                </div><!---->
+                                            </div>
+                                             <div class="col-xl-4  d-flex flex-xl-column align-self-center">
+                                                <a class="btn btn-primary text-white justify-content-end text-medium ms-xl-auto ms-5" href="https://zoho.to/gstn-archival " target="_blank" rel="noopener noreferrer">
+                                                    Learn More <!---->
+                                                </a><!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <!---->
+                        <div class="position-relative me-5 me-xl-0 ">
+                            <div class="separation-identifier text-center">
+                                <div class="lh-100 font-normal text-dark-shade-blue text-semibold">26</div> 
+                                <div class="text-light-shade-blue font-9 text-semibold text-uppercase">Sep</div>
+                            </div>
+                             <div class="row m-0 announcement-card-wrapper"><!----> 
+                                <div class="col-xl-11 announcement-card border-top ps-5 pe-2 ">
+                                    <div class="announcement-content rounded-xlg d-flex expanded-view">
+                                        <div class="announcement-image flex-shrink-0 rounded-xlg cursor-pointer">
+                                            <img src="https://inventory.zoho.in/api/v1/bannerimage?image_id=a9dc044feb6cb19ee113522417221fd3b8e04f3071294b875625e24e43eb584715212f2f1661e01e085f863f898e28cb" class="w-100 h-100 rounded-xlg" loading="lazy"></div> 
+                                            <div class="flex-grow-1 row"><div class="col-xl-8 ps-8 mb-xl-0 mb-4 text-dark-shade-blue">
+                                                <div class="text-black-semibold lh-180 font-large text-medium btn-link cursor-pointer"><!----> 
+                                                    Connect, Learn, and Grow at the Zoho Inventory Community Meetup</div> 
+                                                    <div class="font-normal preserve-wrap pb-3">We're visiting 6 cities across India bringing together Zoho Inventory users just like you! Join us to meet with our team and fellow users, discover the latest features and more. Register for the event in a city near you! </div>
+                                                    <span class="text-medium pe-5">
+                                                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon fill-marengo align-text-top">
+                                                            <path d="M397.57 48.67h-30.95v-9a21 21 0 10-42 0v9H187.91v-9a21 21 0 00-42 0v9H115a81.1 81.1 0 00-81 81v282.61a81.1 81.1 0 0081 81h282.57a81.1 81.1 0 0081-81V129.67a81.1 81.1 0 00-81-81zm39 363.61a39.05 39.05 0 01-39 39H115a39.05 39.05 0 01-39-39V129.67a39.05 39.05 0 0139-39h31v3.71a21 21 0 0042 0v-3.71h136.62v3.71a21 21 0 0042 0v-3.71h30.95a39.05 39.05 0 0139 39z"></path>
+                                                            <path d="M331.49 252l-67.66 67.67a21 21 0 01-29.7 0l-37.52-37.52a21 21 0 1129.7-29.7L249 275.11l52.82-52.82A21 21 0 01331.49 252z"></path>
+                                                            <path d="M0 0h512v512H0z" fill="none"></path>
+                                                        </svg> 1 Oct onwards</span> <!---->
+                                                        <span class="text-medium pe-5">
+                                                            <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444 512" class="icon fill-marengo align-text-top">
+                                                                <g id="Layer_1-2">
+                                                                    <path d="M222 302.33c-44.15 0-80.07-35.95-80.07-80.14s35.92-80.14 80.07-80.14 80.07 35.95 80.07 80.14-35.92 80.14-80.07 80.14zm0-120.28c-22.11 0-40.11 18.01-40.11 40.14s17.99 40.14 40.11 40.14 40.11-18.01 40.11-40.14-17.99-40.14-40.11-40.14z"></path>
+                                                                    <path d="M221.97 512c-15.18 0-29.44-5.91-40.17-16.65L76.23 389.69C41.06 354.5 0 289.51 0 222.18c0-59.35 23.09-115.14 65.02-157.11C106.95 23.11 162.7 0 222 0s115.05 23.11 156.98 65.08C420.91 107.04 444 162.84 444 222.19c0 82.23-53.87 145.01-77.03 168.19L262.14 495.34C251.41 506.08 237.15 512 221.97 512zM222 40C121.63 40 39.97 121.73 39.97 222.18c0 51.57 32.4 107.08 64.52 139.22l105.57 105.66a16.74 16.74 0 0011.91 4.94c4.5 0 8.73-1.75 11.91-4.94l104.84-104.97c12.87-12.88 31.19-34.14 45.43-62.32 13.2-26.12 19.89-52.23 19.89-77.59C404.04 121.72 322.38 40 222.01 40z"></path>
+                                                                </g></svg> Chennai | Bengaluru | New Delhi | Mumbai | Hyderabad | Ahmedabad</span>
+                                                            </div> 
+                                                            <div class="col-xl-4  d-flex flex-xl-column align-self-center">
+                                                                <a class="btn btn-primary text-white justify-content-end text-medium ms-xl-auto ms-5" href="https://zoho.to/cmeetup_zom_zp" target="_blank" rel="noopener noreferrer">Register Now <!---->
+
+                                                                </a><!---->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> <!---->
+                                        <div class="position-relative me-5 me-xl-0 ">
+                                            <div class="separation-identifier text-center">
+                                                <div class="lh-100 font-normal text-dark-shade-blue text-semibold">10</div> 
+                                                <div class="text-light-shade-blue font-9 text-semibold text-uppercase">Sep</div>
+                                            </div> <div class="row m-0 announcement-card-wrapper"><!----> 
+                                                <div class="col-xl-11 announcement-card border-top ps-5 pe-2 border-bottom">
+                                                    <div class="announcement-content rounded-xlg d-flex expanded-view">
+                                                        <div class="announcement-image flex-shrink-0 rounded-xlg cursor-pointer">
+                                                            <img src="https://inventory.zoho.in/api/v1/bannerimage?image_id=a9dc044feb6cb19ee113522417221fd3918bbe763b805e2c4ac24c5bdd59cc16164ea91592f06080a90c04ce263a2b2e" class="w-100 h-100 rounded-xlg" loading="lazy"></div> 
+                                                            <div class="flex-grow-1 row"><div class="col-xl-8 ps-8 mb-xl-0 mb-4 text-dark-shade-blue">
+                                                                <div class="text-black-semibold lh-180 font-large text-medium btn-link cursor-pointer"><!----> What's New in Zoho Inventory: July - September 2024</div> 
+                                                                <div class="font-normal preserve-wrap ">We're back again with the most requested features and enhancements in Zoho Inventory. Read our forum post to learn what's new.</div><!---->
+                                                            </div> 
+                                                            <div class="col-xl-4  d-flex flex-xl-column align-self-center">
+                                                                <a class="btn btn-primary text-white justify-content-end text-medium ms-xl-auto ms-5" href=" https://zoho.to/zom-july-sept-update" target="_blank" rel="noopener noreferrer">Read What's New <!----></a><!---->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                     <!---->
+                                    </div><!---->
+                                </div> 
+            </div>
+        </section>
        
         
     </main>
-    <script>
-
-const products = [
-    { name: "Tomato", category: "Vegetables", price: 2.5 },
-    { name: "Apple", category: "Fruits", price: 1.2 },
-    { name: "Banana", category: "Fruits", price: 0.5 },
-    // Add more product objects as needed
-];
-
-function displayProducts() {
-    const productList = document.getElementById('productList');
-    productList.innerHTML = ''; // Clear previous content
-    
-    products.forEach(product => {
-        const productItem = document.createElement('div');
-        productItem.classList.add('product-item');
-        productItem.innerHTML = `
-            <div class="product-info">
-                <h4>${product.name}</h4>
-                <p>Category: ${product.category}</p>
-                <p>Price: $${product.price.toFixed(2)}</p>
-            </div>
-            <div class="product-actions">
-                <button onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
-            </div>
-        `;
-        productList.appendChild(productItem);
-    });
-}
-
-function addToCart(name, price) {
-    // You can implement cart functionality here
-    console.log(`Added ${name} to cart for $${price.toFixed(2)}`);
-}
-
-// Call the function to display products when the page loads
-window.onload = displayProducts;
-
-        // Dummy data for charts
-        const customerAcquisitionData = {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [{
-                label: 'New Customers',
-                data: [50, 60, 70, 80, 90, 100],
-                backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        };
-
-        const orderStatusData = {
-            labels: ['Pending', 'Processing', 'Completed'],
-            datasets: [{
-                label: 'Orders',
-                data: [20, 30, 50],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(75, 192, 192, 0.5)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)'
-                ],
-                borderWidth: 1
-            }]
-        };
-
-        // Total counts
-        document.getElementById('totalCustomers').textContent = 100;
-        document.getElementById('totalOrders').textContent = 200;
-        document.getElementById('totalRevenue').textContent = '$5000';
-        document.getElementById('shopCount').textContent = 10;
-
-        // Customer Acquisition Chart
-        const customerAcquisitionCtx = document.getElementById('customerAcquisitionChart').getContext('2d');
-        const customerAcquisitionChart = new Chart(customerAcquisitionCtx, {
-            type: 'line',
-            data: customerAcquisitionData,
-        });
-
-        // Order Status Chart
-        const orderStatusCtx = document.getElementById('orderStatusChart').getContext('2d');
-        const orderStatusChart = new Chart(orderStatusCtx, {
-            type: 'bar',
-            data: orderStatusData,
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-    </script>
+ 
 
     <!-- ########## START: MAIN PANEL ########## -->
    
-            <!-- End Other Elements -->
-            <!----======= End UI Elememnts =======---->
+    
      
     <!-- ########## END: MAIN PANEL ########## -->
 
-</body>
-<script>
-    function toggleDropdown(event, dropdownId) {
-    event.preventDefault();
-    document.getElementById(dropdownId).classList.toggle("show");
-}
-
-// JavaScript for toggling dropdown
-function toggleDropdown(event, dropdownId) {
-    event.preventDefault();
-    var dropdown = document.getElementById(dropdownId);
-    var dropdownParent = event.target.closest('.dropdown-parent');
+    <!-- For dropdown option  -->
+     <script>
+        function updateRangeText() {
+    // Get the selected option from the dropdown
+    var selectedRange = document.getElementById("daterangeDropdown").value;
     
-    if (dropdownParent.classList.contains('active')) {
-        dropdownParent.classList.remove('active');
-    } else {
-        // Close any other open dropdowns
-        var activeDropdown = document.querySelector('.dropdown-parent.active');
-        if (activeDropdown) {
-            activeDropdown.classList.remove('active');
-        }
-        // Open clicked dropdown
-        dropdownParent.classList.add('active');
-    }
+    // Update the text in the range-text span
+    document.getElementById("selectedRange").textContent = selectedRange;
 }
 
-// Close dropdowns when clicking outside
-document.addEventListener('click', function(event) {
-    var dropdowns = document.querySelectorAll('.dropdown-parent');
-    dropdowns.forEach(function(dropdown) {
-        if (!dropdown.contains(event.target)) {
-            dropdown.classList.remove('active');
-        }
-    });
+     </script>
+<!-- End dropdown option-->  
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.getElementById('dashboard-link').addEventListener('click', function(event) {
+    event.preventDefault();  // Prevent the default anchor behavior
+    document.getElementById('dashboard-content').style.display = 'block';
+    document.getElementById('announcements-content').style.display = 'none';
 });
 
+document.getElementById('announcements-link').addEventListener('click', function(event) {
+    event.preventDefault();  // Prevent the default anchor behavior
+    document.getElementById('dashboard-content').style.display = 'none';
+    document.getElementById('announcements-content').style.display = 'block';
+});
 
-
-function redirectToOrders() {
-            window.location.href = "Orders.html";
-        }
 </script>
 <script>
-    const farmersDetails = [
-        { id: 1, name: 'John Doe', productName: 'Fresh Spinach', productCategory: 'vegetables', productImage: 'path-to-image/spinach.jpg', availability: '500' },
-        { id: 2, name: 'Jane Smith', productName: 'Organic Carrots', productCategory: 'vegetables', productImage: 'path-to-image/carrots.jpg', availability: '1kg' },
-        { id: 3, name: 'Emily Johnson', productName: 'Red Apples', productCategory: 'fruits', productImage: 'path-to-image/apples.jpg', availability: '2kg' },
-        { id: 4, name: 'Michael Brown', productName: 'Cheddar Cheese', productCategory: 'dairy', productImage: 'path-to-image/cheese.jpg', availability: '200g' },
-        { id: 5, name: 'Linda Davis', productName: 'Whole Wheat Bread', productCategory: 'daily-products', productImage: 'path-to-image/bread.jpg', availability: '1 Loaf' }
-        // Add more farmers details here
-    ];
-    
-    const farmersItemsTable = document.getElementById('farmers-items');
-    const farmersEmptyMessage = document.getElementById('farmers-empty-message');
-    const categorySelect = document.getElementById('farmer-category-select');
-    
-    function renderFarmersDetails(category) {
-        farmersItemsTable.innerHTML = '';
-        const filteredFarmers = category === 'all' ? farmersDetails : farmersDetails.filter(farmer => farmer.productCategory === category);
-    
-        if (filteredFarmers.length === 0) {
-            farmersEmptyMessage.style.display = 'block';
-        } else {
-            farmersEmptyMessage.style.display = 'none';
-            filteredFarmers.forEach(farmer => {
-                const row = document.createElement('tr');
-                row.setAttribute('data-id', farmer.id);
-    
-                row.innerHTML = `
-                    <td>${farmer.name}</td>
-                    <td>${farmer.productName}</td>
-                    <td><img src="${farmer.productImage}" alt="${farmer.productName}" class="product-image"></td>
-                    <td>${farmer.availability}</td>
-                    <td>
-                        <button class="remove-farmer">REMOVE</button>
-                        <button class="place-order">PLACE ORDER</button>
-                    </td>
-                `;
-                farmersItemsTable.appendChild(row);
-            });
-    
-            attachFarmersEventListeners();
+   // Create the chart for Active and No Active Items using Chart.js (Doughnut or Pie Chart)
+var ctx = document.getElementById('activeItemChart').getContext('2d');
+var activeItemChart = new Chart(ctx, {
+    type: 'doughnut',  // Change to 'doughnut' or 'pie' for circular chart
+    data: {
+        labels: ['Active Items', 'No Active Items'],  // Labels for the chart
+        datasets: [{
+            label: 'Number of Items',
+            data: [10, 0],  // Replace 10 with your dynamic data for active items
+            backgroundColor: ['#36a2eb', '#ff6384'],  // Colors for the segments
+            hoverOffset: 4   // Adds some offset when hovering
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',  // Position the legend at the top
+            }
         }
     }
-    
-    function attachFarmersEventListeners() {
-        const removeFarmerButtons = document.querySelectorAll('.remove-farmer');
-        const placeOrderButtons = document.querySelectorAll('.place-order');
-    
-        removeFarmerButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const row = e.target.closest('tr');
-                const farmerId = row.getAttribute('data-id');
-    
-                // Remove farmer from farmersDetails
-                const farmerIndex = farmersDetails.findIndex(farmer => farmer.id == farmerId);
-                if (farmerIndex !== -1) {
-                    farmersDetails.splice(farmerIndex, 1);
-                }
-    
-                // Re-render farmers details
-                renderFarmersDetails(categorySelect.value);
-            });
-        });
-    
-        placeOrderButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Redirect to the checkout page or perform another action
-                window.location.href = 'checkout.html';
-            });
-        });
-    }
-    
-    // Handle category selection change
-    categorySelect.addEventListener('change', (e) => {
-        renderFarmersDetails(e.target.value);
-    });
-    
-    // Initial render
-    renderFarmersDetails('all');
-    </script>
-    
+});
+
+</script>
+<script>
+    // Example function to update the table data dynamically
+function updateSalesActivity(qty, toBePacked, toBeShipped, toBeDelivered, toBeInvoiced) {
+    document.querySelector(".activity-table tbody").innerHTML = `
+        <tr><td>Qty</td><td>${qty}</td></tr>
+        <tr><td>To be Packed</td><td>${toBePacked} Pkgs</td></tr>
+        <tr><td>To be Shipped</td><td>${toBeShipped} Pkgs</td></tr>
+        <tr><td>To be Delivered</td><td>${toBeDelivered} Qty</td></tr>
+        <tr><td>To be Invoiced</td><td>${toBeInvoiced}</td></tr>
+    `;
+}
+
+// Example data update for inventory summary
+function updateInventorySummary(quantityInHand, quantityToBeReceived) {
+    document.querySelector(".summary-table tbody").innerHTML = `
+        <tr><td>Quantity in Hand</td><td>${quantityInHand}</td></tr>
+        <tr><td>Quantity to be Received</td><td>${quantityToBeReceived}</td></tr>
+    `;
+}
+
+// You can call these functions and pass in the actual values dynamically
+updateSalesActivity(0, 0, 0, 0, 0);
+updateInventorySummary(0, 0);
+
+</script>
+
 <script src="assets/scripts/jquery.min.js"></script>
 <script src="assets/scripts/popper.min.js"></script>
 <script src="assets/scripts/bootstrap-slider.min.js"></script>
@@ -1017,5 +855,5 @@ function redirectToOrders() {
 <script src="assets/scripts/datatables.min.js"></script>
 <script src="assets/scripts/ripple.min.js"></script>
 <script src="assets/scripts/custome.js"></script>
-
+</body>
 </html>
