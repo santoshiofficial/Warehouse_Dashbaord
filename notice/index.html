@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Notices</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .form-container,
+        .table-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input[type="text"],
+        textarea,
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: #6a11cb;
+            outline: none;
+            box-shadow: 0 0 5px rgba(106, 17, 203, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .submit-btn,
+        .edit-btn,
+        .delete-btn {
+            background-color: #6a11cb;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover,
+        .edit-btn:hover,
+        .delete-btn:hover {
+            background-color: #5a0fa3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            color: #555;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .action-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-right: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .edit-btn {
+            background-color: #4CAF50;
+        }
+
+        .delete-btn {
+            background-color: #f44336;
+        }
+
+        .edit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .delete-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Form Container -->
+    <div class="form-container">
+        <h2>Notice Form</h2>
+        <form id="noticeForm">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" placeholder="Enter the notice title" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <textarea id="subject" name="subject" placeholder="Enter the notice subject" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="file">Upload File</label>
+                <input type="file" id="file" name="file" accept=".pdf,.docx,.txt" required>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="submit-btn">Add Notice</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Table Container -->
+    <div class="table-container" id="tableContainer" style="display: none;">
+        <h2>Manage Notices</h2>
+        <table id="noticeTable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Subject</th>
+                    <th>File</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamic Content will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let notices = [];
+        let editingIndex = -1;
+
+        // Add Notice Function
+        document.getElementById('noticeForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const title = document.getElementById('title').value;
+            const subject = document.getElementById('subject').value;
+            const fileInput = document.getElementById('file');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert("Please select a file.");
+                return;
+            }
+
+            const fileName = file.name;
+
+            if (editingIndex === -1) {
+                // Add new notice
+                notices.push({ title, subject, fileName });
+            } else {
+                // Update existing notice
+                notices[editingIndex] = { title, subject, fileName };
+                editingIndex = -1;
+            }
+
+            document.getElementById('noticeForm').reset();
+            displayNotices();
+        });
+
+        // Display Notices in the Table
+        function displayNotices() {
+            const tableBody = document.getElementById('noticeTable').querySelector('tbody');
+            tableBody.innerHTML = ''; // Clear existing content
+
+            notices.forEach((notice, index) => {
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td>${notice.title}</td>
+                    <td>${notice.subject}</td>
+                    <td>${notice.fileName}</td>
+                    <td>
+                        <button class="action-btn edit-btn" onclick="editNotice(${index})">Edit</button>
+                        <button class="action-btn delete-btn" onclick="deleteNotice(${index})">Delete</button>
+                    </td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+
+            document.getElementById('tableContainer').style.display = 'block';
+        }
+
+        // Edit Notice Function
+        function editNotice(index) {
+            document.getElementById('title').value = notices[index].title;
+            document.getElementById('subject').value = notices[index].subject;
+            editingIndex = index;
+        }
+
+        // Delete Notice Function
+        function deleteNotice(index) {
+            notices.splice(index, 1);
+            displayNotices();
+        }
+    </script>
+</body>
+
+</html>
