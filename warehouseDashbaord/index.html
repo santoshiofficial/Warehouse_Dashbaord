@@ -75,15 +75,16 @@
             <a href="index.html"><img src="assets/image/logo1.jpeg" alt="Milko Dashboard Panel" width="80" /></a>
         </div>
         <ul class="custom-scroll">
-            <li class="active"><a href="index.html" class="waves-effect waves-primary"><i class="la la-dashboard"></i>Dashboard</a></li>
+            <li class="active"><a href="index.html" class="waves-effect waves-primary"><i class="la la-home"></i>Home</a></li>
+            <li><a href="Inventory.html" class="waves-effect waves-primary"><i class="la la-cart-plus"></i>Inventory</a></li>
+            <li><a href="Sales.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Sales</a></li>
+            <li><a href="Purchases.html" class="waves-effect waves-primary"><i class="la la-archive"></i>Purchases</a></li>
             <li><a href="Farmer-Board.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Farmer-Board</a></li>
-            <li><a href="Orders.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Shop-Board</a></li>
-            <li><a href="Messages.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Stock-Board</a></li>
-            <li><a href="Payment.html" class="waves-effect waves-primary"><i class="la la-bank"></i>Payments</a></li>
-            <li><a href="Payment.html" class="waves-effect waves-primary"><i class="la la-bank"></i>Payment-History</a></li>
-            <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Notice Add</a></li>
-            <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Wallet</a></li>
-            <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Billing</a></li>
+            <li><a href="Shop-Board.html" class="waves-effect waves-primary"><i class="la la-bank"></i>Shop-Board</a></li>
+            <li><a href="Stock-Board.html" class="waves-effect waves-primary"><i class="la la-bank"></i>Stock-Board</a></li>
+            <!-- <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Notice Add</a></li>
+            <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Wallet</a></li> -->
+            <!-- <li><a href="shop-details.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Billing</a></li> -->
             <li><a href="Setting.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Settings</a></li>
             <li><a href="../index.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Logout</a></li>
         </ul>
@@ -91,327 +92,7 @@
     
     <!-- ########## END: LEFT PANEL ########## -->
 
-    <header class="header fixed-top d-flex align-items-center" style="height: 15%;">
-        <!-- ########## START: HEAD PANEL ########## -->
-        <div class="br-header d-flex w-100">
-            <a id="add-menu" class="la la-navicon d-flex d-xl-none align-items-center justify-content-center"></a>
-            <div class="br-header-left">
-                <a href="javascript:;" class="searchbar-toggle la la-search d-flex d-md-none"></a>
-                <form class="searchbar d-flex align-items-center pl-3">
-                    <i class="la la-search"></i>
-                    <input class="form-control border-0 pl-2" type="search" placeholder="Search...">
-                </form>
-            </div>
-            <!-- br-header-left -->
-            <div class="br-header-right ml-auto" >
-                <nav class="nav" >
-                    <div class="dropdown" >
-                        <a href="" class="nav-link position-relative dropdown-toggle waves-effect waves-primary" id="dropdownPaymentHistory" data-toggle="dropdown">
-                            <i class="la la-history"></i>
-                            <span class="badge badge-accent">3</span> <!-- Number of payment history entries -->
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-header py-0" aria-labelledby="dropdownPaymentHistory">
-                            <div class="dropdown-menu-label">
-                                <label class="mb-0">Payment History</label>
-                                <button type="button" class="btn btn-primary btn-sm waves-effect waves-primary">View all</button>
-                            </div>
-                            <!-- d-flex -->
-                            <div class="dropdown-divider my-0"></div>
-                            <div class="media-list">
-                                <!-- loop starts here -->
-                                <a href="" class="media-list-link">
-                                    <div class="media d-flex align-items-center py-2 px-2">
-                                        <i class="la la-receipt la-2x"></i> <!-- Payment history icon -->
-                                        <div class="media-body pl-3">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <strong>Invoice #12345</strong>
-                                                <span>Yesterday</span>
-                                            </div>
-                                            <!-- d-flex -->
-                                            <p class="mb-0">Paid ₹250 via Credit Card</p>
-                                        </div>
-                                    </div>
-                                    <!-- media -->
-                                </a>
-                                <!-- loop ends here -->
-                                <!-- loop starts here -->
-                                <a href="" class="media-list-link">
-                                    <div class="media d-flex align-items-center py-2 px-2">
-                                        <i class="la la-receipt la-2x"></i> <!-- Payment history icon -->
-                                        <div class="media-body pl-3">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <strong>Invoice #54321</strong>
-                                                <span>2 days ago</span>
-                                            </div>
-                                            <!-- d-flex -->
-                                            <p class="mb-0">Refunded ₹100 to PayPal</p>
-                                        </div>
-                                    </div>
-                                    <!-- media -->
-                                </a>
-                                <!-- loop ends here -->
-                                <!-- loop starts here -->
-                                <a href="" class="media-list-link">
-                                    <div class="media d-flex align-items-center py-2 px-2">
-                                        <i class="la la-receipt la-2x"></i> <!-- Payment history icon -->
-                                        <div class="media-body pl-3">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <strong>Invoice #67890</strong>
-                                                <span>Last week</span>
-                                            </div>
-                                            <!-- d-flex -->
-                                            <p class="mb-0">Paid ₹500 via Bank Transfer</p>
-                                        </div>
-                                    </div>
-                                    <!-- media -->
-                                </a>
-                                <!-- loop ends here -->
-                            </div>
-                            <!-- media-list -->
-                        </div>
-                        <!-- dropdown-menu -->
-                    </div>
-                    
-
-                    <div class="dropdown">
-                        <a href="" class="nav-link position-relative dropdown-toggle waves-effect waves-primary" id="dropdownPayment" data-toggle="dropdown">
-                            <i class="la la-credit-card"></i>
-                            <span class="badge badge-accent">5</span> <!-- You can adjust the number to reflect payment notifications -->
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-header py-0" aria-labelledby="dropdownPayment">
-                            <div class="dropdown-menu-label">
-                                <label class="mb-0">Payments</label>
-                                <button type="button" class="btn btn-primary btn-sm waves-effect waves-primary">View all</button>
-                            </div>
-                            <!-- d-flex -->
-                            <div class="dropdown-divider my-0"></div>
-                            <div class="media-list">
-                                <!-- loop starts here -->
-                                <a href="" class="media-list-link">
-                                    <div class="media d-flex align-items-center py-2 px-2">
-                                        <i class="la la-money-check-alt la-2x"></i> <!-- Payment-related icon -->
-                                        <div class="media-body pl-3">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <strong>Payment from John Doe</strong>
-                                                <span>10 minutes ago</span>
-                                            </div>
-                                            <!-- d-flex -->
-                                            <p class="mb-0">You received ₹250 for Invoice #12345.</p>
-                                        </div>
-                                    </div>
-                                    <!-- media -->
-                                </a>
-                                <!-- loop ends here -->
-                                <!-- loop starts here -->
-                                <a href="" class="media-list-link">
-                                    <div class="media d-flex align-items-center py-2 px-2">
-                                        <i class="la la-money-check-alt la-2x"></i> <!-- Payment-related icon -->
-                                        <div class="media-body pl-3">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <strong>Refund to Jane Smith</strong>
-                                                <span>1 hour ago</span>
-                                            </div>
-                                            <!-- d-flex -->
-                                            <p class="mb-0">Refund of ₹100 for Order #54321 was processed.</p>
-                                        </div>
-                                    </div>
-                                    <!-- media -->
-                                </a>
-                                <!-- loop ends here -->
-                                <!-- loop starts here -->
-                                <a href="" class="media-list-link">
-                                    <div class="media d-flex align-items-center py-2 px-2">
-                                        <i class="la la-money-check-alt la-2x"></i> <!-- Payment-related icon -->
-                                        <div class="media-body pl-3">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <strong>Payment from Mike Johnson</strong>
-                                                <span>2 hours ago</span>
-                                            </div>
-                                            <!-- d-flex -->
-                                            <p class="mb-0">You received ₹500 for Invoice #67890.</p>
-                                        </div>
-                                    </div>
-                                    <!-- media -->
-                                </a>
-                                <!-- loop ends here -->
-                            </div>
-                            <!-- media-list -->
-                        </div>
-                        <!-- dropdown-menu -->
-                    </div>
-                    
-                    <div class="dropdown">
-                        <a href="" class="nav-link position-relative dropdown-toggle waves-effect waves-primary" id="dropdownMSG" data-toggle="dropdown">
-                            <i class="la la-envelope-o"></i>
-                            <span class="badge badge-accent">2</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-header py-0" aria-labelledby="dropdownMSG">
-                            <div class="dropdown-menu-label">
-                                <label class="mb-0">Messages</label>
-                                <button type="button" class="btn btn-primary btn-sm waves-effect waves-primary">View
-									all</button>
-                            </div>
-                            <!-- d-flex -->
-                            <div class="dropdown-divider my-0"></div>
-                            <div class="media-list">
-                                <!-- loop starts here -->
-                                <a href="" class="media-list-link">
-                                    <div class="media d-flex align-items-center py-2 px-2">
-                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
-                                        <div class="media-body pl-3">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <strong>Sham patil</strong>
-                                                <span>2 minutes ago</span>
-                                            </div>
-                                            <!-- d-flex -->
-                                            <p class="mb-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
-                                        </div>
-                                    </div>
-                                    <!-- media -->
-                                </a>
-                                <!-- loop ends here -->
-                                <!-- loop starts here -->
-                                <a href="" class="media-list-link">
-                                    <div class="media d-flex align-items-center py-2 px-2">
-                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
-                                        <div class="media-body pl-3">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <strong>Sita Ram</strong>
-                                                <span>2 minutes ago</span>
-                                            </div>
-                                            <!-- d-flex -->
-                                            <p class="mb-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
-                                        </div>
-                                    </div>
-                                    <!-- media -->
-                                </a>
-                                <!-- loop ends here -->
-                                <!-- loop starts here -->
-                                <a href="" class="media-list-link">
-                                    <div class="media d-flex align-items-center py-2 px-2">
-                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
-                                        <div class="media-body pl-3">
-                                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <strong>Shima patil</strong>
-                                                <span>2 minutes ago</span>
-                                            </div>
-                                            <!-- d-flex -->
-                                            <p class="mb-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
-                                        </div>
-                                    </div>
-                                    <!-- media -->
-                                </a>
-                                <!-- loop ends here -->
-                            </div>
-                            <!-- media-list -->
-                        </div>
-                        <!-- dropdown-menu -->
-                    </div>
-                    <!-- dropdown -->
-                    <div class="dropdown">
-                        <a href="" class="nav-link position-relative dropdown-toggle waves-effect waves-primary" id="dropdownNOTY" data-toggle="dropdown">
-                            <i class="la la-bell"></i>
-                            <span class="badge badge-accent ">1</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-header py-0" aria-labelledby="dropdownNOTY">
-                            <div class="dropdown-menu-label">
-                                <label class="mb-0">NOTIFICATIONS </label>
-                                <button type="button" class="btn btn-primary btn-sm waves-effect waves-light">View
-									all</button>
-                            </div>
-                            <!-- d-flex -->
-                            <div class="dropdown-divider my-0"></div>
-                            <div class="media-list">
-                                <!-- loop starts here -->
-                                <a href="" class="media-list-link">
-                                    <div class="media d-flex align-items-center py-2 px-2">
-                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
-                                        <div class="media-body pl-3">
-                                            <div class="d-flex align-items-center justify-content-between mb-1">
-                                                <strong>Sham Patil</strong>
-                                            </div>
-                                            <!-- d-flex -->
-                                            <p class="mb-0">A wonderful serenity has taken possession of </p>
-                                        </div>
-                                    </div>
-                                    <!-- media -->
-                                </a>
-                                <!-- loop ends here -->
-                                <!-- loop starts here -->
-                                <a href="" class="media-list-link">
-                                    <div class="media d-flex align-items-center py-2 px-2">
-                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
-                                        <div class="media-body pl-3">
-                                            <div class="d-flex align-items-center justify-content-between mb-1">
-                                                <strong>Ram Modi</strong>
-                                            </div>
-                                            <!-- d-flex -->
-                                            <p class="mb-0">A wonderful serenity has taken possession of my entire.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!-- media -->
-                                </a>
-                                <!-- loop ends here -->
-                                <!-- loop starts here -->
-                                <a href="" class="media-list-link">
-                                    <div class="media d-flex align-items-center py-2 px-2">
-                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
-                                        <div class="media-body pl-3">
-                                            <div class="d-flex align-items-center justify-content-between mb-1">
-                                                <strong>Samir Patel</strong>
-                                            </div>
-                                            <!-- d-flex -->
-                                            <p class="mb-0">A wonderful serenity has taken possession.</p>
-                                        </div>
-                                    </div>
-                                    <!-- media -->
-                                </a>
-                                <!-- loop ends here -->
-                            </div>
-                            <!-- media-list -->
-                        </div>
-                        <!-- dropdown-menu -->
-                    </div>
-                    <!-- dropdown -->
-                    <div class="dropdown">
-                        <a href="" class="nav-link-profile d-flex dropdown-toggle" data-toggle="dropdown" id="dropdownprofile">
-                            <img src="assets/image/logo1.jpeg" class="rounded" alt="" width="50">
-                            <span class="logged-name px-3">Milko <br><small class="pt-3">Founder</small></span>
-                            <i class="profile-dropdown la la-caret-square-o-down"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-header dropdown-menu-user" aria-labelledby="dropdownprofile">
-                            <div class="text-center">
-                                <a href=""><img src="assets/image/logo1.jpeg" width="80" class="rounded-circle" alt=""></a>
-                                <h6 class="logged-fullname font-weight-bold mt-2">Rathod Sir</h6>
-                                <p class="my-0">milko@domain.com</p>
-                            </div>
-                            <hr>
-                            <ul class="list-unstyled user-profile-nav">
-                                <li><a href="javascript:;" class=" waves-effect waves-light"><i class="la la-user"></i>
-										Edit Profile</a></li>
-                                <li><a href="javascript:;" class=" waves-effect waves-light"><i class="la la-cog"></i>
-										Settings</a></li>
-                                <li><a href="javascript:;" class=" waves-effect waves-light"><i
-											class="la la-download"></i> Downloads</a></li>
-                                <li><a href="javascript:;" class=" waves-effect waves-light"><i
-											class="la la-star-o"></i> Favorites</a></li>
-                                <li><a href="javascript:;" class=" waves-effect waves-light"><i class="la la-file"></i>
-										Collections</a></li>
-                                <li><a href="javascript:;" class=" waves-effect waves-light"><i
-											class="la la-power-off"></i> Sign Out</a></li>
-                            </ul>
-                        </div>
-                        <!-- dropdown-menu -->
-                    </div>
-                    <!-- dropdown -->
-                </nav>
-            </div>
-            <!-- br-header-right -->
-        </div>
-        <!-- br-header -->
-        <!-- ########## END: HEAD PANEL ########## -->
-    </header>
+    
     <main>
         <header>
             <div class="header-left">
@@ -420,6 +101,57 @@
             <div class="header-right">
                 <p>Zoho Inventory India Helpline: 18005726671<br>
                 Mon - Fri • 9:00 AM - 7:00 PM • Toll Free</p>
+              <!-- dropdown -->
+<div class="dropdown">
+    <a href="" class="nav-link-profile d-flex dropdown-toggle" data-toggle="dropdown" id="dropdownprofile">
+        <img src="assets/image/logo1.jpeg" class="rounded" alt="" width="50">
+        <span class="logged-name px-3">Milko <br><small class="pt-3">Founder</small></span>
+        <i class="profile-dropdown la la-caret-square-o-down"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-header dropdown-menu-user" aria-labelledby="dropdownprofile" style="width: 200px; text-align: center;">
+        <div class="text-center">
+            <a href=""><img src="assets/image/logo1.jpeg" width="80" class="rounded-circle" alt=""></a>
+            <h6 class="logged-fullname font-weight-bold mt-2">Rathod Sir</h6>
+            <p class="my-0">milko@domain.com</p>
+        </div>
+        <hr>
+        <ul class="list-unstyled user-profile-nav" style="padding: 0;">
+            <li style="margin-bottom: 10px;">
+                <a href="javascript:;" class="waves-effect waves-light">
+                    <i class="la la-user"></i> Edit Profile
+                </a>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <a href="javascript:;" class="waves-effect waves-light">
+                    <i class="la la-cog"></i> Settings
+                </a>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <a href="javascript:;" class="waves-effect waves-light">
+                    <i class="la la-download"></i> Downloads
+                </a>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <a href="javascript:;" class="waves-effect waves-light">
+                    <i class="la la-star-o"></i> Favorites
+                </a>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <a href="javascript:;" class="waves-effect waves-light">
+                    <i class="la la-file"></i> Collections
+                </a>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <a href="javascript:;" class="waves-effect waves-light">
+                    <i class="la la-power-off"></i> Sign Out
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- dropdown-menu -->
+</div>
+<!-- dropdown -->
+
             </div>
         </header>
         <nav>
