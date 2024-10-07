@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Void Transfer Orders</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header-title {
+            position: relative;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .header-title h1 {
+            font-size: 24px;
+            font-weight: normal;
+            margin-right: 10px;
+        }
+
+        .header-title .arrow {
+            font-size: 14px;
+            margin-left: 5px;
+        }
+
+        /* Dropdown for Void Transfer Orders */
+        .order-dropdown {
+            display: none;
+            position: absolute;
+            top: 35px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            z-index: 100;
+            min-width: 160px;
+        }
+
+        .order-dropdown a {
+            display: block;
+            padding: 10px;
+            font-size: 14px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .order-dropdown a:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Show dropdown on hover */
+        .header-title:hover .order-dropdown {
+            display: block;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .header button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .header .dots-menu {
+            position: relative;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 35px;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            z-index: 100;
+            min-width: 120px;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px;
+            font-size: 14px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Hover effect to show the dropdown */
+        .dots-menu:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .filters .filter-item {
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .filters .filter-item label {
+            font-size: 16px;
+            margin-right: 8px;
+        }
+
+        .filters select {
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .filters .report-link {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        table thead {
+            background-color: #f1f1f1;
+        }
+
+        table thead th {
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+            color: #666;
+        }
+
+        table tbody td {
+            padding: 12px;
+            font-size: 14px;
+            color: #333;
+            border-top: 1px solid #eee;
+        }
+
+        table tbody tr {
+            background-color: white;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 50px;
+            /* Increased padding for bigger row */
+            color: #999;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <div class="header-title">
+            <h1>Void Transfer Orders</h1>
+            <span class="arrow">&#x25BC;</span>
+            <!-- Dropdown Menu -->
+            <div class="order-dropdown">
+                <a href="#">All Transfer Orders</a>
+                <a href="#">Pending Orders</a>
+                <a href="#">Completed Orders</a>
+            </div>
+        </div>
+        <div class="header-right">
+            <button>+ New</button>
+            <div class="dots-menu">
+                &#x22EE;
+                <div class="dropdown-menu">
+                    <a href="#">Option 1</a>
+                    <a href="#">Option 2</a>
+                    <a href="#">Option 3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Section -->
+    <table>
+        <thead>
+            <tr>
+                <th><input type="checkbox"></th>
+                <th>Date</th>
+                <th>Transfer Order #</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Quantity Transferred</th>
+                <th>Source Warehouse</th>
+                <th>Destination Warehouse</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- No data to display row -->
+            <tr>
+                <td colspan="8" class="no-data">No Transfer orders to display</td>
+
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

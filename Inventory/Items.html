@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Items</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .header-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .three-dots {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            z-index: 100;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .item-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            /* 2 cards per row */
+            gap: 20px;
+        }
+
+        .item-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-card img {
+            max-width: 100px;
+            margin-bottom: 15px;
+        }
+
+        .item-card h2 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .item-card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .item-card button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* Make it responsive */
+        @media (max-width: 768px) {
+            .item-container {
+                grid-template-columns: 1fr;
+                /* 1 card per row on small screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>All Items</h1>
+        <div class="header-buttons">
+            <button>+ New</button>
+            <div class="three-dots" id="threeDotsButton">&#x22EE;</div>
+        </div>
+
+        <!-- Dropdown content -->
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="#">Edit</a>
+            <a href="#">Duplicate</a>
+            <a href="#">Delete</a>
+        </div>
+    </div>
+
+    <div class="item-container">
+        <!-- Item Group Card -->
+        <div class="item-card">
+            <h2>Item Groups</h2>
+            <img src="https://via.placeholder.com/100x100.png?text=Group" alt="Item Group">
+            <p>Create multiple variants of the same item using Item Groups</p>
+            <button>New Item Group</button>
+        </div>
+
+        <!-- Items Card -->
+        <div class="item-card">
+            <h2>Items</h2>
+            <img src="https://via.placeholder.com/100x100.png?text=Item" alt="Items">
+            <p>Create standalone items and services that you buy and sell</p>
+            <button>New Item</button>
+        </div>
+
+        <!-- Composite Items Card -->
+        <div class="item-card">
+            <h2>Composite Items</h2>
+            <img src="https://via.placeholder.com/100x100.png?text=Composite" alt="Composite Items">
+            <p>Bundle different items together and sell them as kits</p>
+            <button>Enable Now</button>
+        </div>
+
+        <!-- Price Lists Card -->
+        <div class="item-card">
+            <h2>Price Lists</h2>
+            <img src="https://via.placeholder.com/100x100.png?text=Price" alt="Price Lists">
+            <p>Tweak your item prices for specific contacts or transactions</p>
+            <button>Enable Now</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for Three Dots Dropdown Menu
+        const threeDotsButton = document.getElementById("threeDotsButton");
+        const dropdownMenu = document.getElementById("dropdownMenu");
+
+        threeDotsButton.addEventListener("click", function () {
+            // Toggle dropdown visibility
+            if (dropdownMenu.style.display === "block") {
+                dropdownMenu.style.display = "none";
+            } else {
+                dropdownMenu.style.display = "block";
+            }
+        });
+
+        // Close the dropdown if clicked outside
+        window.addEventListener("click", function (event) {
+            if (!event.target.matches('.three-dots')) {
+                dropdownMenu.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+
+</html>

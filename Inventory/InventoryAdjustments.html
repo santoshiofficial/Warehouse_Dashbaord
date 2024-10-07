@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Adjustments</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        /* Header with buttons aligned on the same line */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* Space between New button and three dots button */
+            position: relative;
+        }
+
+        .header button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .three-dots {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            /* Adjust to appear right below the three dots */
+            right: 0;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            z-index: 100;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            /* Align filters and link to opposite sides */
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .filter-options {
+            display: flex;
+            align-items: center;
+        }
+
+        .filter-options label {
+            font-size: 14px;
+            margin-right: 10px;
+            color: #666;
+        }
+
+        .filter-options select {
+            margin-right: 20px;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+
+        .fifo-link {
+            text-decoration: none;
+            font-size: 14px;
+            color: #007bff;
+        }
+
+        .fifo-link:hover {
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f5f5f5;
+            color: #333;
+            position: relative;
+        }
+
+        td {
+            color: #666;
+        }
+
+        .empty-row {
+            text-align: center;
+            font-size: 16px;
+            color: #999;
+            padding: 20px 0;
+        }
+
+        /* Search icon for the Last Modified Time column */
+        .search-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .filter-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .filter-options select {
+                margin-bottom: 10px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .button-container {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header with buttons aligned in the same row -->
+    <div class="header">
+        <h1>Inventory Adjustments</h1>
+
+        <div class="button-container">
+            <!-- New Button -->
+            <button id="newButton">+ New</button>
+
+            <!-- Three Dots Dropdown -->
+            <div class="three-dots" id="threeDotsButton">&#x22EE;</div>
+            <div class="dropdown-menu" id="dropdownMenu">
+                <a href="#">Option 1</a>
+                <a href="#">Option 2</a>
+                <a href="#">Option 3</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Row with FIFO link -->
+    <div class="filter-container">
+        <div class="filter-options">
+            <label for="typeFilter">Filter By :</label>
+            <select id="typeFilter">
+                <option value="all">Type: All</option>
+                <!-- Add more filter options as needed -->
+                <option value="By Quality">By Quality</option>
+                <option value="By Value">By value</option>
+            </select>
+
+            <select id="periodFilter">
+                <option value="all">Period: All</option>
+                <!-- Add more filter options as needed -->
+                <option value="Today">Today</option>
+                <option value="This Week">This Week</option>
+                <option value="This Month">This Month</option>
+                <option value="This Year">This Year</option>
+            </select>
+        </div>
+
+        <!-- FIFO Cost Lot Tracking Report link -->
+        <a href="#" class="fifo-link">FIFO Cost Lot Tracking Report</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Reason</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Reference Number</th>
+                <th>Type</th>
+                <th>Created By</th>
+                <th>Created Time</th>
+                <th>Last Modified By</th>
+                <th>
+                    Last Modified Time
+                    <!-- Search Icon next to Last Modified Time -->
+                    <span class="search-icon" id="searchIcon">&#128269;</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="10" class="empty-row">No data to display</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        // JavaScript for New Button
+        document.getElementById("newButton").addEventListener("click", function () {
+            alert("New button clicked! This can open a modal or redirect.");
+        });
+
+        // JavaScript for Three Dots Dropdown Menu
+        const threeDotsButton = document.getElementById("threeDotsButton");
+        const dropdownMenu = document.getElementById("dropdownMenu");
+
+        threeDotsButton.addEventListener("click", function () {
+            // Toggle dropdown visibility
+            if (dropdownMenu.style.display === "block") {
+                dropdownMenu.style.display = "none";
+            } else {
+                dropdownMenu.style.display = "block";
+            }
+        });
+
+        // Close the dropdown if clicked outside
+        window.addEventListener("click", function (event) {
+            if (!event.target.matches('.three-dots')) {
+                dropdownMenu.style.display = "none";
+            }
+        });
+
+        // JavaScript for Search Icon
+        document.getElementById("searchIcon").addEventListener("click", function () {
+            let searchTerm = prompt("Enter search term for Last Modified Time:");
+            if (searchTerm) {
+                alert("You searched for: " + searchTerm);
+                // Implement actual search/filter functionality as needed
+            }
+        });
+    </script>
+
+</body>
+
+</html>
