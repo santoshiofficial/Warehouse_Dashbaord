@@ -29,6 +29,126 @@
     <![endif]-->
     <script src="auth.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1061px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-left: 197px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+        }
+
+        .header-title {
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: black;
+            text-decoration: none; /* Remove underline */
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .new-btn {
+            background-color: #4285f4;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .new-btn:hover {
+            background-color: #357ae8;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #999;
+            font-size: 16px;
+            padding: 20px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 18px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .new-btn {
+                float: none;
+                width: 100%;
+                margin-bottom: 10px;
+                box-sizing: border-box;
+            }
+
+            table {
+                width: 100%;
+                display: block;
+                overflow-x: auto;
+            }
+
+            th, td {
+                white-space: nowrap;
+            }
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .icon-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .dropdown-item i {
+            margin-right: 8px; /* Spacing between icon and text */
+        }
+    </style>
      
 </head>
 
@@ -76,10 +196,10 @@
             <a href="index.html"><img src="assets/image/logo1.jpeg" alt="Milko Dashboard Panel" width="80" /></a>
         </div>
         <ul class="custom-scroll">
-            <li class="active"><a href="Shop_Demanded_Order.html" class="waves-effect waves-primary"><i class="la la-home"></i>Shop Demanded Order</a></li>
-            <li><a href="Shop_Keeper_Order.html" class="waves-effect waves-primary"><i class="la la-cart-plus"></i>Shop Keeper Order</a></li>
-            <li><a href="Order_History.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Order History</a></li>
-            
+            <li><a href="Purchases.html" class="waves-effect waves-primary"><i class="la la-home"></i>Farmer Vendors</a></li>
+            <li><a href="Purchase_Orders.html" class="waves-effect waves-primary"><i class="la la-cart-plus"></i>Purchase Orders</a></li>
+            <li><a href="Purchases_Receives.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Purchases Receives</a></li>
+            <li><a href="Bills.html" class="waves-effect waves-primary"><i class="la la-archive"></i>Bills</a></li>
            
         </ul>
     </div>
@@ -407,12 +527,97 @@
         <!-- ########## END: HEAD PANEL ########## -->
     </header>
     <main >
-        
+        <div class="container">
+            <!-- Header with Bootstrap Dropdown -->
+            <div class="header">
+                <!-- Dropdown for filtering purchase order status -->
+                <div class="dropdown">
+                    <a class="dropdown-toggle header-title" href="#" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <strong>Billed Purchase Order</strong>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">Pending Approval</a></li>
+                        <li><a class="dropdown-item" href="#">Approval</a></li>
+                        <li><a class="dropdown-item" href="#">Billed</a></li>
+                        <li><a class="dropdown-item" href="#">Pending Received</a></li>
+                        <li><a class="dropdown-item" href="#">Received</a></li>
+                    </ul>
+                </div>
+    
+                <!-- 3-Dot Dropdown Menu on the right -->
+                <div class="dropdown">
+                    <button class="icon-btn" id="threeDotsDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="More options">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+                        </svg>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="threeDotsDropdown">
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-upload"></i> Import Purchases Order</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-download"></i> Export Purchases Order</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-upload"></i> Import Purchases Receives</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-download"></i> Export Purchases Receives</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-in-down"></i> Export Current View</a></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- Main content as table with responsive container -->
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Purchase Order</th>
+                            <th>Reference</th>
+                            <th>Farmer Name</th>
+                            <th>Status</th>
+                            <th>Received</th>
+                            <th>Billed</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10/01/2024</td>
+                            <td>#PO-12345</td>
+                            <td>Ref-001</td>
+                            <td>John Doe</td>
+                            <td>Approved</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>$500</td>
+                        </tr>
+                        <tr>
+                            <td>11/01/2024</td>
+                            <td>#PO-54321</td>
+                            <td>Ref-002</td>
+                            <td>Jane Smith</td>
+                            <td>Pending</td>
+                            <td>No</td>
+                            <td>No</td>
+                            <td>$300</td>
+                        </tr>
+                        <tr>
+                            <td>12/01/2024</td>
+                            <td>#PO-67890</td>
+                            <td>Ref-003</td>
+                            <td>Mark Lee</td>
+                            <td>Approved</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                            <td>$1000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
     </main>
-
 </body>
 
-    
+        <!-- Bootstrap JS and Popper.js -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
 <script src="assets/scripts/jquery.min.js"></script>
 <script src="assets/scripts/popper.min.js"></script>
 <script src="assets/scripts/bootstrap-slider.min.js"></script>

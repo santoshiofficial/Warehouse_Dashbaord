@@ -29,6 +29,33 @@
     <![endif]-->
     <script src="auth.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .header {
+          padding: 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid #ccc;
+        }
+        .filter-section {
+          padding: 20px;
+        }
+        .table-section {
+          padding: 0 20px;
+        }
+        .table th, .table td {
+          vertical-align: middle;
+        }
+        .no-records {
+          text-align: center;
+          padding: 50px 0;
+          color: #6c757d;
+        }
+        .filter-label {
+          font-weight: bold;
+          margin-right: 10px;
+        }
+      </style>
      
 </head>
 
@@ -76,11 +103,18 @@
             <a href="index.html"><img src="assets/image/logo1.jpeg" alt="Milko Dashboard Panel" width="80" /></a>
         </div>
         <ul class="custom-scroll">
-            <li class="active"><a href="Shop_Demanded_Order.html" class="waves-effect waves-primary"><i class="la la-home"></i>Shop Demanded Order</a></li>
-            <li><a href="Shop_Keeper_Order.html" class="waves-effect waves-primary"><i class="la la-cart-plus"></i>Shop Keeper Order</a></li>
-            <li><a href="Order_History.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Order History</a></li>
-            
            
+            <li class="active"><a href="Customers.html" class="waves-effect waves-primary"><i class="la la-cart-plus"></i>Customers</a></li>
+            <li><a href="Retainer_Invoices.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Retainer Invoices</a></li>
+            <li><a href="Sales_Orders.html" class="waves-effect waves-primary"><i class="la la-archive"></i>Sales Orders</a></li>
+            <li><a href="Picklists.html" class="waves-effect waves-primary"><i class="la la-home"></i>Picklists</a></li>
+            <li><a href="Packages.html" class="waves-effect waves-primary"><i class="la la-cart-plus"></i>Packages</a></li>
+            <li><a href="Shipments.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Shipments</a></li>
+            <li><a href="Delivery_Challans.html" class="waves-effect waves-primary"><i class="la la-archive"></i>Delivery Challans</a></li>
+            <li><a href="Invoices.html" class="waves-effect waves-primary"><i class="la la-home"></i>Invoices</a></li>
+            <li><a href="Payments_Received.html" class="waves-effect waves-primary"><i class="la la-cart-plus"></i>Payments Received</a></li>
+            <li><a href="Sales_Returns.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Sales Returns</a></li>
+            <li><a href="Credit_Notes.html" class="waves-effect waves-primary"><i class="la la-archive"></i>Credit Notes</a></li>
         </ul>
     </div>
     <!-- ########## END: LEFT PANEL ########## -->
@@ -407,7 +441,60 @@
         <!-- ########## END: HEAD PANEL ########## -->
     </header>
     <main >
-        
+         <!-- Header Section -->
+  <div class="header">
+    <h3>Shipments</h3>
+    <div>
+      <a href="#" class="btn btn-link">View EasyPost Usage</a>
+      <button class="btn btn-primary">+ New</button>
+    </div>
+  </div>
+
+  <!-- Filter Section -->
+  <div class="filter-section">
+    <label class="filter-label">Filter By :</label>
+    <!-- Dropdowns for filtering status and type -->
+    <select class="form-control d-inline w-auto mr-2" id="statusFilter">
+      <option>Status : All</option>
+      <option>Pending</option>
+      <option>Shipped</option>
+      <option>Delivered</option>
+      <option>Canceled</option>
+    </select>
+    
+    <select class="form-control d-inline w-auto" id="typeFilter">
+      <option>Type : All</option>
+      <option>Domestic</option>
+      <option>International</option>
+    </select>
+  </div>
+
+  <!-- Table Section -->
+  <div class="table-section">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="col"><input type="checkbox"></th>
+          <th scope="col">DATE</th>
+          <th scope="col">SHIPMENT ORDER#</th>
+          <th scope="col">CUSTOMER NAME</th>
+          <th scope="col">SALES ORDER#</th>
+          <th scope="col">PACKAGE#</th>
+          <th scope="col">CARRIER</th>
+          <th scope="col">TRACKING#</th>
+          <th scope="col">STATUS</th>
+          <th scope="col">SHIPPING RATE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Empty state message when there are no records -->
+        <tr>
+          <td colspan="10" class="no-records">No Records Found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
     </main>
 
 </body>
