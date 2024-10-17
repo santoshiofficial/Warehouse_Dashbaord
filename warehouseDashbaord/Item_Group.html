@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content='IE=edge' http-equiv=X-UA-Compatible>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/images/logo1.jpeg" rel="icon">
+    <title>Milko Admin Panel</title>
+    <link rel="shortcut icon" type="image/png" href="#">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/line-awesome@1.3.0/dist/line-awesome/css/line-awesome.min.css">
+
+
+
+    <!-- Core Css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/line-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-slider.css">
+
+    <!-- Custom Css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            margin-top: 0px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+            
+        }
+
+        .dropdown-header {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .dropdown-header h1 {
+            font-size: 24px;
+            color: #333;
+            display: inline;
+        }
+
+        .dropdown-header i {
+            font-size: 16px;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            transition: background-color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f8f9fa;
+            padding-left: 20px;
+            /* Smooth padding increase on hover */
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .header-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .three-dots {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            transition: background-color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f8f9fa;
+            padding-left: 20px;
+            /* Smooth padding increase on hover */
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .item-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            /* 2 cards per row */
+            gap: 20px;
+        }
+
+        .item-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-card img {
+            max-width: 100px;
+            margin-bottom: 15px;
+        }
+
+        .item-card h2 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .item-card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .item-card button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* Make it responsive */
+        @media (max-width: 768px) {
+            .item-container {
+                grid-template-columns: 1fr;
+                /* 1 card per row on small screens */
+            }
+        }
+        /* Hide side panel by default on small screens */
+@media screen and (max-width: 768px) {
+    .br-sideleft {
+        display: none;
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background-color: #f4f4f4;
+        z-index: 999;
+    }
+
+    .br-sideleft.active {
+        display: block;
+    }
+
+    .btn-toggle {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    #remove-menu {
+        display: block;
+        color: #333;
+        font-size: 24px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+}
+
+    </style>
+     
+</head>
+
+<body>
+    <div class="overlay-background"></div>
+    <!-- ########## START: Setting Box ########## -->
+    <div class="theme-setting-wrapper">
+        <!-- <button type="button" id="settings-trigger" class="btn btn-primary waves-effect waves-primary">
+			<i class="la la-cog"></i>
+		</button> -->
+        <div class="theme-setting-sidebar">
+            <div class="h-100">
+                <div class="mt-4 d-flex align-items-center flex-wrap px-4">
+                    <h4 class="font-weight-bold">THEME CUSTOMIZER</h4>
+                    <small>Customize &amp; Preview in Real Time</small>
+                </div>
+                <hr>
+                <div class="theme-setting-sidebar-scroll">
+                    <div class="px-4">
+                        <div>
+                            <h5 class="mb-2">Dark Mode</h5>
+                            <div class="d-flex align-items-center">
+                                <div class="radio theme-radio mr-4">
+                                    <input type="radio" id="light" name="light" value="theme-light">
+                                    <label for="light">Light</label>
+                                </div>
+                                <div class="radio theme-radio mr-4">
+                                    <input type="radio" id="dark" name="light" value="theme-dark">
+                                    <label for="dark">Dark</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ########## END: Setting Box ########## -->
+
+    <!-- ########## START: LEFT PANEL ########## -->
+    <div class="br-sideleft">
+        <button id="menu-toggle" class="d-xl-none btn-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <a id="remove-menu" class="la la-close d-xl-none"></a>
+        <div class="br-logo d-flex justify-content-center align-items-center">
+            <a href="index.html"><img src="assets/image/logo1.jpeg" alt="Milko Dashboard Panel" width="80" /></a>
+        </div>
+        <ul class="custom-scroll">
+            <li class="active"><a href="Item.html" class="waves-effect waves-primary"><i class="la la-home"></i>Item</a></li>
+            <li><a href="Item_Group.html" class="waves-effect waves-primary"><i class="la la-cart-plus"></i>Item Group</a></li>
+            <li><a href="Inventory_adjustments.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Inventory adjustments</a></li>
+            <li><a href="Transfer_Orders.html" class="waves-effect waves-primary"><i class="la la-archive"></i>Transfer Orders</a></li>
+           
+        </ul>
+    </div>
+    <!-- ########## END: LEFT PANEL ########## -->
+
+    
+   <main style="margin-left: 50px;">
+    
+    <div class="header">
+        <!-- Dropdown for "All Items" with arrow -->
+        <div class="dropdown-header" id="allItemsDropdown">
+            <h1>All Items</h1>
+            <i>&#9660;</i> <!-- Arrow icon -->
+            <div class="dropdown-content" id="dropdownContent">
+                <a href="#">All Item List</a>
+                <a href="#">Active Item Groups </a>
+                <a href="#">Inactive Item Groups</a>
+            </div>
+        </div>
+
+        <!-- Other buttons -->
+        <div class="header-buttons">
+            <button>+ New</button>
+            <div class="three-dots" id="threeDotsButton">&#x22EE;</div>
+        </div>
+
+        <!-- Dropdown content for 3 dots -->
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="#">Edit</a>
+            <a href="#">Duplicate</a>
+            <a href="#">Delete</a>
+        </div>
+    </div>
+
+    <div class="item-container">
+        <!-- Item Group Card -->
+        <div class="item-card">
+            <h2>Item Groups</h2>
+            <img src="https://via.placeholder.com/100x100.png?text=Group" alt="Item Group">
+            <p>Create multiple variants of the same item using Item Groups</p>
+            <button>New Item Group</button>
+        </div>
+
+        <!-- Items Card -->
+        <div class="item-card">
+            <h2>Items</h2>
+            <img src="https://via.placeholder.com/100x100.png?text=Item" alt="Items">
+            <p>Create standalone items and services that you buy and sell</p>
+            <button>New Item</button>
+        </div>
+
+        <!-- Composite Items Card -->
+        <div class="item-card">
+            <h2>Composite Items</h2>
+            <img src="https://via.placeholder.com/100x100.png?text=Composite" alt="Composite Items">
+            <p>Bundle different items together and sell them as kits</p>
+            <button>Enable Now</button>
+        </div>
+
+        <!-- Price Lists Card -->
+        <div class="item-card">
+            <h2>Price Lists</h2>
+            <img src="https://via.placeholder.com/100x100.png?text=Price" alt="Price Lists">
+            <p>Tweak your item prices for specific contacts or transactions</p>
+            <button>Enable Now</button>
+        </div>
+    </div>
+
+    <script>
+        // Toggle dropdown for "All Items"
+        const allItemsDropdown = document.getElementById('allItemsDropdown');
+        const dropdownContent = document.getElementById('dropdownContent');
+
+        allItemsDropdown.addEventListener('click', function () {
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // JavaScript for Three Dots Dropdown Menu
+        const threeDotsButton = document.getElementById("threeDotsButton");
+        const dropdownMenu = document.getElementById("dropdownMenu");
+
+        threeDotsButton.addEventListener("click", function () {
+            dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+        });
+
+        // Close dropdown if clicked outside
+        window.addEventListener("click", function (event) {
+            if (!event.target.matches('.three-dots') && !event.target.closest('.dropdown-header')) {
+                dropdownMenu.style.display = "none";
+                dropdownContent.style.display = "none";
+            }
+        });
+    </script>
+   </main>
+        
+    <!-- ########## START: MAIN PANEL ########## -->
+   
+            <!-- End Other Elements -->
+            <!----======= End UI Elememnts =======---->
+     
+    <!-- ########## END: MAIN PANEL ########## -->
+
+</body>
+<script>
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+    document.querySelector('.br-sideleft').classList.toggle('active');
+});
+
+document.getElementById('remove-menu').addEventListener('click', function() {
+    document.querySelector('.br-sideleft').classList.remove('active');
+});
+
+</script>
+    
+<script src="assets/scripts/jquery.min.js"></script>
+<script src="assets/scripts/popper.min.js"></script>
+<script src="assets/scripts/bootstrap-slider.min.js"></script>
+<script src="assets/scripts/bootstrap.min.js"></script>
+<script src="assets/scripts/bootstrap.bundle.min.js"></script>
+<script src="assets/scripts/bootstrap-select.min.js"></script>
+<script src="assets/scripts/bootstrap-tooltip-custom-class.js"></script>
+<script src="assets/scripts/jquery.mCustomScrollbar.js"></script>
+<script src="assets/scripts/Chart.min.js"></script>
+<script src="assets/scripts/dashboard.js"></script>
+<script src="assets/scripts/datatables.min.js"></script>
+<script src="assets/scripts/ripple.min.js"></script>
+<script src="assets/scripts/custome.js"></script>
+
+</html>

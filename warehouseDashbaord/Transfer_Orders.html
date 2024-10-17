@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content='IE=edge' http-equiv=X-UA-Compatible>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/images/logo1.jpeg" rel="icon">
+    <title>Milko Admin Panel</title>
+    <link rel="shortcut icon" type="image/png" href="#">
+
+    <!-- Core Css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/line-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-slider.css">
+
+    <!-- Custom Css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header-title {
+            position: relative;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .header-title h1 {
+            font-size: 24px;
+            font-weight: normal;
+            margin-right: 10px;
+        }
+
+        .header-title .arrow {
+            font-size: 14px;
+            margin-left: 5px;
+        }
+
+        /* Dropdown for Void Transfer Orders */
+        .order-dropdown {
+            display: none;
+            position: absolute;
+            top: 35px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            z-index: 100;
+            min-width: 160px;
+        }
+
+        .order-dropdown a {
+            display: block;
+            padding: 10px;
+            font-size: 14px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .order-dropdown a:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Show dropdown on hover */
+        .header-title:hover .order-dropdown {
+            display: block;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .header button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .header .dots-menu {
+            position: relative;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 35px;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            z-index: 100;
+            min-width: 120px;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px;
+            font-size: 14px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Hover effect to show the dropdown */
+        .dots-menu:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .filters .filter-item {
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .filters .filter-item label {
+            font-size: 16px;
+            margin-right: 8px;
+        }
+
+        .filters select {
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .filters .report-link {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        table thead {
+            background-color: #f1f1f1;
+        }
+
+        table thead th {
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+            color: #666;
+        }
+
+        table tbody td {
+            padding: 12px;
+            font-size: 14px;
+            color: #333;
+            border-top: 1px solid #eee;
+        }
+
+        table tbody tr {
+            background-color: white;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 50px;
+            /* Increased padding for bigger row */
+            color: #999;
+            font-size: 18px;
+        }
+    </style>
+     
+</head>
+
+<body>
+    <div class="overlay-background"></div>
+    <!-- ########## START: Setting Box ########## -->
+    <div class="theme-setting-wrapper">
+        <!-- <button type="button" id="settings-trigger" class="btn btn-primary waves-effect waves-primary">
+			<i class="la la-cog"></i>
+		</button> -->
+        <div class="theme-setting-sidebar">
+            <div class="h-100">
+                <div class="mt-4 d-flex align-items-center flex-wrap px-4">
+                    <h4 class="font-weight-bold">THEME CUSTOMIZER</h4>
+                    <small>Customize &amp; Preview in Real Time</small>
+                </div>
+                <hr>
+                <div class="theme-setting-sidebar-scroll">
+                    <div class="px-4">
+                        <div>
+                            <h5 class="mb-2">Dark Mode</h5>
+                            <div class="d-flex align-items-center">
+                                <div class="radio theme-radio mr-4">
+                                    <input type="radio" id="light" name="light" value="theme-light">
+                                    <label for="light">Light</label>
+                                </div>
+                                <div class="radio theme-radio mr-4">
+                                    <input type="radio" id="dark" name="light" value="theme-dark">
+                                    <label for="dark">Dark</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ########## END: Setting Box ########## -->
+
+    <!-- ########## START: LEFT PANEL ########## -->
+    <div class="br-sideleft">
+        <a id="remove-menu" class="la la-close d-xl-none"></a>
+        <div class="br-logo d-flex justify-content-center align-items-center">
+            <a href="index.html"><img src="assets/image/logo1.jpeg" alt="Milko Dashboard Panel" width="80" /></a>
+        </div>
+        <ul class="custom-scroll">
+            <li class="active"><a href="Item.html" class="waves-effect waves-primary"><i class="la la-home"></i>Item</a></li>
+            <li><a href="Item_Group.html" class="waves-effect waves-primary"><i class="la la-cart-plus"></i>Item Group</a></li>
+            <li><a href="Inventory_adjustments.html" class="waves-effect waves-primary"><i class="la la-cart-arrow-down"></i>Inventory adjustments</a></li>
+            <li><a href="Transfer_Orders.html" class="waves-effect waves-primary"><i class="la la-archive"></i>Transfer Orders</a></li>
+           
+        </ul>
+    </div>
+    <!-- ########## END: LEFT PANEL ########## -->
+
+    
+   <main style="margin-left: 39px;">
+    <!-- Header Section -->
+    <div class="header">
+        <div class="header-title">
+            <h1>Void Transfer Orders</h1>
+            <span class="arrow">&#x25BC;</span>
+            <!-- Dropdown Menu -->
+            <div class="order-dropdown">
+                <a href="#">All Transfer Orders</a>
+                <a href="#">Pending Orders</a>
+                <a href="#">Completed Orders</a>
+            </div>
+        </div>
+        <div class="header-right">
+            <button>+ New</button>
+            <div class="dots-menu">
+                &#x22EE;
+                <div class="dropdown-menu">
+                    <a href="#">Option 1</a>
+                    <a href="#">Option 2</a>
+                    <a href="#">Option 3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Section -->
+    <table>
+        <thead>
+            <tr>
+                <th><input type="checkbox"></th>
+                <th>Date</th>
+                <th>Transfer Order #</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Quantity Transferred</th>
+                <th>Source Warehouse</th>
+                <th>Destination Warehouse</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- No data to display row -->
+            <tr>
+                <td colspan="8" class="no-data">No Transfer orders to display</td>
+
+            </tr>
+        </tbody>
+    </table>
+
+   </main>
+        
+    <!-- ########## START: MAIN PANEL ########## -->
+   
+            <!-- End Other Elements -->
+            <!----======= End UI Elememnts =======---->
+     
+    <!-- ########## END: MAIN PANEL ########## -->
+
+</body>
+
+    
+<script src="assets/scripts/jquery.min.js"></script>
+<script src="assets/scripts/popper.min.js"></script>
+<script src="assets/scripts/bootstrap-slider.min.js"></script>
+<script src="assets/scripts/bootstrap.min.js"></script>
+<script src="assets/scripts/bootstrap.bundle.min.js"></script>
+<script src="assets/scripts/bootstrap-select.min.js"></script>
+<script src="assets/scripts/bootstrap-tooltip-custom-class.js"></script>
+<script src="assets/scripts/jquery.mCustomScrollbar.js"></script>
+<script src="assets/scripts/Chart.min.js"></script>
+<script src="assets/scripts/dashboard.js"></script>
+<script src="assets/scripts/datatables.min.js"></script>
+<script src="assets/scripts/ripple.min.js"></script>
+<script src="assets/scripts/custome.js"></script>
+
+</html>
